@@ -13,7 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/', 'index');
+Route::group(['as' => 'front'], function () {
+    Route::view('/', 'front.index')->name('home');
+});
 
 Auth::routes();
 
