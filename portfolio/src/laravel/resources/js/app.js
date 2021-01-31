@@ -8,7 +8,8 @@ require('./bootstrap');
 
 window.Vue = require('vue').default;
 
-import vuetify from './lib/vuetify'
+import vuetify from './Vue/lib/vuetify'
+import router from './Vue/lib/router'
 
 /**
  * The following block of code may be used to automatically register your
@@ -17,11 +18,11 @@ import vuetify from './lib/vuetify'
  *
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
+const files = require.context('./Vue', true, /\.vue$/i);
+files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
-
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+// Vue.component('navigation', require('./components/common/Navigation.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -32,4 +33,5 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 const app = new Vue({
     el: '#app',
     vuetify: vuetify,
+    router: router,
 });
