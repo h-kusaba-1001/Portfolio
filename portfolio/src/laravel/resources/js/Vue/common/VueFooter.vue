@@ -63,7 +63,8 @@
         <v-divider></v-divider>
 
         <v-card-text class="yellow darken-1 white--text text-center">
-          2021 — <strong>H.Kusaba's Portfolio</strong> by Hirofumi Kusaba
+          <div>2021</div>
+          <div><strong>H.Kusaba's Portfolio</strong> by Hirofumi Kusaba</div>
         </v-card-text>
       </v-card>
     </v-footer>
