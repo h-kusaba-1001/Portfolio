@@ -12,6 +12,9 @@ import vuetify from './Vue/lib/vuetify'
 import router from './Vue/lib/router'
 import vuexStore from './Vue/lib/vuexStore'
 
+// blade.php向けに、別途vuetifyのコンポーネントを読み込んでおく
+import { VApp, VProgressLinear, VMain, VContainer } from 'vuetify/lib'
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -36,6 +39,12 @@ const app = new Vue({
     vuetify: vuetify,
     router: router,
     store: vuexStore,
+    components: {
+        VApp,
+        VProgressLinear,
+        VMain,
+        VContainer
+    },
     data () {
         return {
         }
