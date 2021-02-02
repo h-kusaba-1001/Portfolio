@@ -7,7 +7,7 @@ window.Vue.use(Vuex)
 const opt = {
   state: {
     isLoading: true,
-    transitionStyle: "scroll-y-reverse-transition",
+    transitionStyle: "slide-x-reverse-transition",
     lazyOptions: {
       threshold: 1.0
     },
