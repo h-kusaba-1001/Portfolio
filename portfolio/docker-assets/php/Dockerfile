@@ -1,4 +1,7 @@
 FROM php:7.4-fpm-alpine
+
+RUN cp -r /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini
+
 RUN apk add --no-cache \
         zip \
         libzip-dev \

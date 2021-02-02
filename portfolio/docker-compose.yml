@@ -24,6 +24,7 @@ services:
             - mailhog
         volumes:
             - ./src:/src
+            - ./docker-assets/php/php.ini:/usr/local/etc/php/php.ini
         working_dir: /src/laravel
         
     # database
