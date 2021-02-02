@@ -10,6 +10,7 @@ window.Vue = require('vue').default;
 
 import vuetify from './Vue/lib/vuetify'
 import router from './Vue/lib/router'
+import vuexStore from './Vue/lib/vuexStore'
 
 /**
  * The following block of code may be used to automatically register your
@@ -34,4 +35,15 @@ const app = new Vue({
     el: '#app',
     vuetify: vuetify,
     router: router,
+    store: vuexStore,
+    data () {
+        return {
+        }
+    },
+    created() {
+        vuexStore.commit("gonnaLoading");
+    },
+    mounted() {
+        vuexStore.commit("loaded");
+    },
 });
