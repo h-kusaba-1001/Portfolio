@@ -13,12 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['as' => 'front'], function () {
+Route::group(['as' => 'front.'], function () {
     Route::view('/', 'front.index')->name('home');
     Route::view('/blog', 'front.index')->name('blogList');
     Route::view('/about', 'front.index')->name('about');
 });
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
