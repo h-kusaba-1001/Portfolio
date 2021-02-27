@@ -24,7 +24,7 @@ class AdminUserFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name,
+            'name' => config('const.admin_user.name'),
             'email' => config('const.admin_user.email'),
             'email_verified_at' => now(),
             'password' => Hash::make(config('const.admin_user.password')), // password
