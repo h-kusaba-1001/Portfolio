@@ -176,7 +176,8 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         // add
-        Collective\Html\HtmlServiceProvider::class,
+        Collective\Html\HtmlServiceProvider::class, // Form facade
+        Kris\LaravelFormBuilder\FormBuilderServiceProvider::class, // FormType
     ],
 
     /*
@@ -230,8 +231,9 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         // add
-        'Form' => Collective\Html\FormFacade::class,
-        'Html' => Collective\Html\HtmlFacade::class,
+        'Form' => Collective\Html\FormFacade::class, // Form facade
+        'Html' => Collective\Html\HtmlFacade::class, // Form facade
+        'FormBuilder' => Kris\LaravelFormBuilder\Facades\FormBuilder::class, // FormType
     ],
 
 ];
