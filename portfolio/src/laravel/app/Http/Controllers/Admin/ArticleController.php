@@ -5,10 +5,17 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Service\ArticleService;
-use Illuminate\Support\Facades\View;
+use Kris\LaravelFormBuilder\FormBuilder;
+use App\Forms\ArticleForm;
+use App\Models\Article;
+use App\Http\Controllers\Traits\CreateFormTrait;
+use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class ArticleController extends Controller
 {
+    use CreateFormTrait;
+
     private $articleService;
 
     public function __construct(ArticleService $articleService)
@@ -31,22 +38,58 @@ class ArticleController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param  FormBuilder $formBuilder
+     * @return \Illuminate\View\View
      */
-    public function create()
+    public function create(FormBuilder $formBuilder) : View
     {
-        return view('admin.article.create');
+        $form = $this->createForm(
+            $formBuilder,
+            ArticleForm::class,
+            route('admin.article.store'),
+            ['files' => true]
+        );
+        return view('admin.article.create', compact(['form']));
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  FormBuilder $formBuilder
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(Request $request, FormBuilder $formBuilder) : RedirectResponse
     {
-        
+        $form = $this->createForm(
+            $formBuilder,
+            ArticleForm::class,
+            route('admin.article.store'),
+            ['files' => true]
+        );
+        $form->redirectIfNotValid();
+
+        $vals = $form->getFieldValues();
+        // TODO 画像ファイルパスの追加
+
+        $result = Article::create($vals);
+
+        if(!($result instanceof Article)) {
+            session()->flash(
+                'flash_message',
+                'Article' . config('const.flush.store.failed')
+            );
+                return redirect()->back()
+                    ->withInput($request->all())
+                    ->withErrors($form->getErrors());
+        }
+
+        session()->flash(
+            'flash_message',
+            'Article' . config('const.flush.store.success')
+        );
+
+        return redirect(route('admin.article.index'));
     }
 
     /**

@@ -11,6 +11,15 @@ class Article extends Model
 {
     use SoftDeletes;
 
+    /**
+     * guarded
+     *
+     * @var array
+     */
+    protected $guarded = [
+        'id'
+    ];
+
     public function articleComments()
     {
         return $this->hasMany(ArticleComment::class);

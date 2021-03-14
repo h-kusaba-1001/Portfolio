@@ -8,4 +8,10 @@ return [
     ],
     'admin_url' => env('ADMIN_URL'),
 
+    'flush' => [
+        'store' => [
+            'success'   => '：新規作成に成功しました。',
+            'failed'    => '：新規作成に失敗しました。'
+        ]
+    ]
 ];
