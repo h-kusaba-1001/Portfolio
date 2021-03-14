@@ -18,6 +18,7 @@ class CreateArticleCommentsTable extends Migration
             $table->foreignId('article_id');
             $table->text('content')->comment('コメント本文');
             $table->timestamps();
+            $table->softDeletes();
 
             // 外部参照
             $table->foreign('article_id')->references('id')->on('articles');

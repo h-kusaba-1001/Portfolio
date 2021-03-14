@@ -19,6 +19,7 @@ class CreateArticlesTable extends Migration
             $table->text('content')->comment('本文');
             $table->string('image_filepath', 511)->nullable()->comment('本文');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

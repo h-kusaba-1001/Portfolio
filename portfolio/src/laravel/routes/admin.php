@@ -21,6 +21,8 @@ Route::group(['prefix' => config('const.admin_url'), 'as' => 'admin.', 'namespac
     Route::group(['middleware' => 'auth:admin_users'], function () {
         Route::view('/home', 'admin.home')->name('home');
 
+        // ブログ記事
+        Route::resource('article', 'ArticleController');
     });
 });
 
