@@ -129,11 +129,19 @@ class ArticleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  int $id
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy($id)
+    public function destroy($id) : RedirectResponse
     {
-        //
+        $msg = 'Article' . config('const.flush.delete.success');
+        // destroyの返り値で削除件数を取得して判定
+        if (Article::destroy($id) !== 1) {
+            $msg = 'Article' . config('const.flush.delete.failed');
+        }
+
+        session()->flash('flash_message', $msg);
+
+        return redirect(route('admin.article.index'));
     }
 }
