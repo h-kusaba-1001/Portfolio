@@ -8,13 +8,11 @@ use App\Service\ArticleService;
 use Kris\LaravelFormBuilder\FormBuilder;
 use App\Forms\ArticleForm;
 use App\Models\Article;
-use App\Http\Controllers\Traits\CreateFormTrait;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 
 class ArticleController extends Controller
 {
-    use CreateFormTrait;
 
     private $articleService;
 
