@@ -18,7 +18,7 @@ class ArticleService
     {
         $article_query = Article::withCount([
                 'articleComments as comment_num',
-                'likes as likes_num',
+                'likes as like_num',
             ])
             ->latest();
 

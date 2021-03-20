@@ -13,7 +13,7 @@ trait CreateFormTrait
      * @param  string $formClass
      * @param  string $targetUrl
      * @param  array|null $options
-     * @param  string $httpMethod
+     * @param  string|null $httpMethod
      * @return Form
      */
     public function createForm(
