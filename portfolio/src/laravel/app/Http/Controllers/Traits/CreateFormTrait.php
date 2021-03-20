@@ -14,10 +14,9 @@ trait CreateFormTrait
      * @param  string $targetUrl
      * @param  array|null $options
      * @param  string $httpMethod
-     * @return FormBuilder
+     * @return Form
      */
     public function createForm(
-        FormBuilder $formBuilder,
         string $formClass,
         string $targetUrl,
         array $options = [],
@@ -30,6 +29,7 @@ trait CreateFormTrait
             ],
             $options
         );
+        $formBuilder = app(FormBuilder::class);
         $form = $formBuilder->create($formClass, $opt);
         return $form;
     }
