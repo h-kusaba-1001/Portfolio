@@ -68,17 +68,15 @@ class ArticleController extends Controller
         $result = Article::create($vals);
 
         if(!($result instanceof Article)) {
-            session()->flash(
-                    'flash_message',
-                    'Article' . config('const.flush.store.failed')
-                );
-            return redirect()->back()
-                ->withInput($request->all())
-                ->withErrors($form->getErrors());
+            return $this->saveFailed(
+                'Article' . config('const.flush.store.failed'),
+                $request,
+                $form
+            );
         }
 
         session()->flash(
-            'flash_message',
+            'success',
             'Article' . config('const.flush.store.success')
         );
 

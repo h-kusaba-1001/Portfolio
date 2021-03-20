@@ -6,9 +6,12 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use App\Http\Controllers\Traits\CreateFormTrait;
+use App\Http\Controllers\Traits\SaveFailedTrait;
 use Illuminate\Routing\Controller as BaseController;
 
 class Controller extends BaseController
 {
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests, CreateFormTrait;
+    use AuthorizesRequests, DispatchesJobs, ValidatesRequests,
+        CreateFormTrait,
+        SaveFailedTrait;
 }

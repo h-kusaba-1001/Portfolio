@@ -76,9 +76,14 @@
         </nav>
 
         <main class="py-4">
-            @if (session('flash_message'))
-                <div class="flash_message bg-success text-center py-3 my-0">
-                    {{ session('flash_message') }}
+            @if (session('success'))
+                <div class="bg-success text-center py-3 my-0">
+                    {{ session('success') }}
+                </div>
+            @endif
+            @if (session('error'))
+                <div class="bg-danger text-center py-3 my-0">
+                    {{ session('error') }}
                 </div>
             @endif
             <div class="container">
