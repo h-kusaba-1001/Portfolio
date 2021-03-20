@@ -69,7 +69,7 @@ class ArticleController extends Controller
 
         if(!($result instanceof Article)) {
             return $this->saveFailed(
-                'Article' . config('const.flush.store.failed'),
+                'Article' . __('flush.store.failed'),
                 $request,
                 $form
             );
@@ -77,7 +77,7 @@ class ArticleController extends Controller
 
         session()->flash(
             'success',
-            'Article' . config('const.flush.store.success')
+            'Article' . __('flush.store.success')
         );
 
         return redirect(route('admin.article.index'));
@@ -125,13 +125,12 @@ class ArticleController extends Controller
      */
     public function destroy($id) : RedirectResponse
     {
-        $msg = 'Article' . config('const.flush.delete.success');
         // destroyの返り値で削除件数を取得して判定
         if (Article::destroy($id) !== 1) {
-            $msg = 'Article' . config('const.flush.delete.failed');
+            session()->flash('error', 'Article' . __('flush.delete.failed'));
+        } else {
+            session()->flash('success', 'Article' . __('flush.delete.success'));
         }
-
-        session()->flash('flash_message', $msg);
 
         return redirect(route('admin.article.index'));
     }
