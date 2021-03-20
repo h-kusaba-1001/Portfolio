@@ -18,6 +18,7 @@
                                 <th scope="col">コメント数</th>
                                 <th scope="col">いいね数</th>
                                 <th scope="col"></th>
+                                <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -29,6 +30,13 @@
                                     <td>{{ $Article->created_at }}</td>
                                     <td>{{ $Article->comment_num }}</td>
                                     <td>{{ $Article->like_num }}</td>
+                                    <td>
+                                        <a class="btn btn-primary btn-block"
+                                            href="{{route('admin.article.edit', $Article->id)}}"
+                                        >
+                                            編集
+                                        </a>
+                                    </td>
                                     <td>
                                         <a class="btn btn-danger btn-block" role="button"
                                             href=""

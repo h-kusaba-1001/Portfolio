@@ -102,7 +102,19 @@ class ArticleController extends Controller
      */
     public function edit($id)
     {
-        //
+        $Article = Article::FindOrFail($id);
+
+        $form = $this->createForm(
+            ArticleForm::class,
+            route('admin.article.update', $Article->id),
+            [
+                'files' => true,
+                'model' => $Article
+            ],
+            'PUT'
+        );
+
+        return view('admin.article.create', compact(['form']));
     }
 
     /**
@@ -114,7 +126,36 @@ class ArticleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $Article = Article::FindOrFail($id);
+
+        $form = $this->createForm(
+            ArticleForm::class,
+            route('admin.article.update', $Article->id),
+            [
+                'files' => true,
+                'model' => $Article
+            ],
+        );
+        $form->redirectIfNotValid();
+        $vals = $form->getFieldValues();
+        // TODO 画像ファイルパスの追加
+
+        $Article->fill($vals);
+        $result = $Article->save();
+        if (!$result) {
+            return $this->saveFailed(
+                'Article' . __('flush.update.failed'),
+                $request,
+                $form
+            );
+        }
+
+        session()->flash(
+            'success',
+            'Article' . __('flush.update.success')
+        );
+
+        return redirect(route('admin.article.index'));
     }
 
     /**
