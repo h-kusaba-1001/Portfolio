@@ -63,7 +63,10 @@ class ArticleController extends Controller
         $form->redirectIfNotValid();
 
         $vals = $form->getFieldValues();
-        // TODO 画像ファイルパスの追加
+        // 画像ファイルパスの追加
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $vals['image_filepath'] = $request->image->store('article', 'public');
+        }
 
         $result = Article::create($vals);
 
@@ -114,7 +117,7 @@ class ArticleController extends Controller
             'PUT'
         );
 
-        return view('admin.article.create', compact(['form']));
+        return view('admin.article.create', compact(['form', 'Article']));
     }
 
     /**
@@ -135,11 +138,14 @@ class ArticleController extends Controller
                 'files' => true,
                 'model' => $Article
             ],
+            'PUT'
         );
         $form->redirectIfNotValid();
         $vals = $form->getFieldValues();
-        // TODO 画像ファイルパスの追加
-
+        // 画像ファイルパスの追加
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $vals['image_filepath'] = $request->image->store('article', 'public');
+        }
         $Article->fill($vals);
         $result = $Article->save();
         if (!$result) {

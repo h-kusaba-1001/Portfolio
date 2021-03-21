@@ -3,7 +3,6 @@
 namespace App\Service;
 
 use App\Models\Article;
-use Illuminate\Http\UploadedFile;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pagination\LengthAwarePaginator;
 
