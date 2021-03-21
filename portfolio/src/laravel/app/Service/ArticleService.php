@@ -36,11 +36,11 @@ class ArticleService
     }
 
     /**
-     * create
+     * getArticleListForFront
      *
      * @return LengthAwarePaginator
      */
-    public function create() : LengthAwarePaginator
+    public function getArticleListForFront() : LengthAwarePaginator
     {
         $article_query = $this->getArticleQuery();
         return $article_query->paginate(config('project.const.per_page.front'));

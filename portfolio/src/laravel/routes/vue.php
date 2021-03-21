@@ -18,3 +18,8 @@ Route::group(['as' => 'front.'], function () {
     Route::view('/blog', 'front.index')->name('blogList');
     Route::view('/about', 'front.index')->name('about');
 });
+
+Route::group(['as' => 'api.', 'prefix' => 'api'], function () {
+    // ブログ記事
+    Route::resource('article', 'ArticleController')->only(['index', 'show']);
+});
