@@ -15,6 +15,15 @@ import vuexStore from './Vue/lib/vuexStore'
 // blade.php向けに、別途vuetifyのコンポーネントを読み込んでおく
 import { VApp, VProgressLinear, VMain, VContainer } from 'vuetify/lib'
 
+const axiosBase = require('axios');
+const axios = axiosBase.create({
+  headers: {
+    'Content-Type': 'application/json',
+    'X-Requested-With': 'XMLHttpRequest'
+  },
+  responseType: 'json'
+});
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -34,6 +43,18 @@ files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+
+// Filters
+import DateFilter from './Vue/filters/Date'
+// filter
+Vue.filter('date', DateFilter)
+Vue.filter('truncate', function(value, limit) {
+  return value.substring(0, limit)
+})
+Vue.filter('tailing', function(value, tail) {
+  return value + tail
+})
+
 const app = new Vue({
     el: '#app',
     vuetify: vuetify,
@@ -45,14 +66,14 @@ const app = new Vue({
         VMain,
         VContainer
     },
-    data () {
+    data() {
         return {
         }
     },
     created() {
-        vuexStore.commit("gonnaLoading");
+        this.$store.commit("gonnaLoading");
     },
-    mounted() {
-        vuexStore.commit("loaded");
+    beforeMounted() {
+        this.$store.commit("loaded");
     },
 });

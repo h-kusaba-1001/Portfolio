@@ -28,9 +28,9 @@
             <v-app>
                 <navigation></navigation>
                 <v-progress-linear
-                    v-if="this.$store.state.isLoading"
+                    v-if="$store.state.isLoading"
                     indeterminate
-                    color="yellow darken-2"
+                    color="blue darken-2"
                 ></v-progress-linear>
                 <v-main>
                     <v-container fluid>
