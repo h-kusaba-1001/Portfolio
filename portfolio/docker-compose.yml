@@ -26,11 +26,14 @@ services:
             - ./src:/src
             - ./docker-assets/php/php.ini:/usr/local/etc/php/php.ini
         working_dir: /src/laravel
+        environment:
+            TZ: 'Asia/Tokyo'
+
         
     # database
     mysql:
         container_name: ${PROJECT_NAME}_mysql
-        image: mysql
+        image: mysql:8.0.23
         volumes:
             - ./database:/var/lib/mysql
         ports:
