@@ -23,9 +23,9 @@ class ArticleController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
-    public function index()
+    public function index() : View
     {
         $Articles = $this->articleService->getArticleListForAdmin();
 
@@ -101,9 +101,9 @@ class ArticleController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
-    public function edit($id)
+    public function edit($id) : View
     {
         $Article = Article::FindOrFail($id);
 
@@ -125,9 +125,9 @@ class ArticleController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id) : RedirectResponse
     {
         $Article = Article::FindOrFail($id);
 
