@@ -18,6 +18,9 @@
       </v-col>
     </v-row>
   </v-container>
+  <v-container v-else-if="articles.length === 0">
+      <p>ブログ記事がありません。</p>
+  </v-container>
   <v-container v-else>
     <v-layout row wrap>
       <v-flex xs12 sm6 lg4 pa-2 v-for="(article) in articles" :key="article._id">
@@ -31,7 +34,7 @@
       v-for="(link) in links"
       :key="link._id"
     >
-      <v-btn 
+      <v-btn
         @click="axiosArticle(link.url)"
         :disabled="link.url == null || link.active"
         v-html="link.label"
@@ -44,6 +47,9 @@
 
 <script>
 import {mapMutations, mapState} from "vuex"
+
+
+
 export default {
   data () {
     return {
@@ -52,6 +58,7 @@ export default {
     }
   },
   components: {
+
   },
   methods: {
     ...mapMutations([
