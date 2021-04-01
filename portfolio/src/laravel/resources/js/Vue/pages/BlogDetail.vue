@@ -3,22 +3,16 @@
 <v-card hover flat
   :transition="this.$store.state.transitionStyle"
 >
-  <v-img
+  <v-parallax
     class="white--text"
-    height="200px"
+    :height="200"
     :src="article.image_filepath ? 'storage/' + article.image_filepath : 'img/front/noimage.jpg'"
   >
-    <v-container fill-height fluid>
-      <v-layout fill-height>
-        <v-flex xs12 align-end flexbox>
-          <h2 class="headline" style="text-shadow: 0px 1px 1px #111;">{{ article.title }}</h2>
-        </v-flex>
-      </v-layout>
-    </v-container>
-  </v-img>
+  </v-parallax>
   <v-card-title>
     <div>
       <p class="grey--text">{{ article.created_at | date }}</p>
+  　　<h2 class="headline">{{ article.title }}</h2>
       <p>
         {{ article.content | truncate(200) | tailing('...') }}
       </p>
