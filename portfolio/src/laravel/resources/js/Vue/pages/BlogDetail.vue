@@ -1,6 +1,8 @@
 <template>
 <!-- <v-card hover flat @click="handlePostcard"> -->
-<v-card hover flat>
+<v-card hover flat
+  :transition="this.$store.state.transitionStyle"
+>
   <v-img
     class="white--text"
     height="200px"
