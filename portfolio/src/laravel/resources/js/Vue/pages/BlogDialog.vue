@@ -67,7 +67,7 @@
          </template>
        </v-list>
        <v-list class="py-0">
-         <v-subheader>Post a comment</v-subheader>
+         <v-subheader>コメント欄 ※投稿されたコメントは、管理者の承認後に閲覧可能となります</v-subheader>
        </v-list>
        <v-form ref="commentForm" v-model="validComment" @submit.prevent="postComment()" validation>
          <v-container fluid py-0>
@@ -82,7 +82,7 @@
                  v-model="newComment.name"
                  :rules="nameRules"
                  :counter="25"
-                 label="First name"
+                 label="お名前"
                  required
                ></v-text-field>
              </v-flex>
@@ -95,7 +95,7 @@
              prepend-icon="mdi-at"
              v-model="newComment.email"
              :rules="emailRules"
-             label="E-mail"
+             label="メールアドレス (任意)"
              required
              ></v-text-field>
            </v-flex>
@@ -107,13 +107,13 @@
                prepend-icon="mdi-comment-text"
                v-model="newComment.content"
                :rules="commentRules"
-               label="Comment"
+               label="コメント"
                :counter="200"
                required
              ></v-text-field>
-             <div class="text-xs-right">
+             <v-flex class="text-right m-4">
                <v-btn type="submit" rounded depressed class="white--text" color="green lighten-1" :disabled="!validComment">Post Comment</v-btn>
-             </div>
+             </v-flex>
            </v-flex>
            </v-layout>
          </v-container>
@@ -163,19 +163,18 @@ export default {
       email: '',
       content: ''
     },
-    validComment: false,
     nameRules: [
-      v => !!v || 'Name is required',
-      v => v.length <= 25 || 'Name must be less than 25 characters'
+      v => !!v || 'お名前を入力してください',
+      v => v.length <= 25 || '25文字以内で入力してください'
     ],
     emailRules: [
-      v => !!v || 'E-mail is required',
-      v => /.+@.+/.test(v) || 'E-mail must be valid'
+      v => (v.length ===0 || /.+@.+/.test(v)) || 'メールアドレスの形式が不正です'
     ],
     commentRules: [
-      v => !!v || 'Comment is required',
-      v => v.length <= 200 || 'Comment must be less than 200 characters'
+      v => !!v || 'コメント内容を入力してください',
+      v => v.length <= 200 || 'コメント内容は、200文字以内で入力して下さい'
     ],
+    validComment: false,
     dialog: false,
     shareSheet: false
   }),
@@ -191,7 +190,7 @@ export default {
       set (val) {
         this.$store.commit('setPostDialog', val)
       }
-    }
+    },
   },
   methods: {
     ...mapMutations([
@@ -200,17 +199,29 @@ export default {
       "getArticle",
       "setActiveArticle"
     ]),
-    postComment () {
-      if (this.$refs.commentForm.validate()) {
-        this.$store.dispatch('postComment', {
-          id: this.article._id,
-          name: this.newComment.name,
-          email: this.newComment.email,
-          content: this.newComment.content,
-          moderated: this.getSettings.metadata.moderated_comments
-        }).then(() => {
-          console.log('Posted New Comment!')
-        })
+    validForm () {
+        if (this.$refs.commentForm !== "undefined" && this.$refs.commentForm.validate()) {
+            this.validComment = true;
+        } else {
+            this.validComment = false;
+        }
+    },
+    async postComment () {
+        if (this.$refs.commentForm.validate()) {
+            let param = {
+                id: this.article.id,
+                name: this.newComment.name,
+                email: this.newComment.email,
+                content: this.newComment.content,
+            };
+            //
+            await axios.post("/api/comment/", param)
+            .then(response => {
+                console.log(response)
+            })
+            .catch(error => {
+                console.log(error.response, error)
+            })
       } else { return }
     },
     // handleShare (post) {
