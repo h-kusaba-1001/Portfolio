@@ -8,7 +8,7 @@
     >
       <v-flex>
       <v-card v-if="!isLoading">
-        <v-toolbar fixed dark color="cyan darken-1">
+        <v-toolbar fixed dark color="yellow darken-1">
           <v-btn icon dark @click.stop="handleCloseDialog()">
             <v-icon>mdi-close</v-icon>
           </v-btn>
@@ -47,25 +47,23 @@
         </v-list> -->
         <!-- COMMENTS -->
         <v-list three-line subheader>
-        <v-subheader>{{ article.article_comments.length }} コメント</v-subheader>
+        <v-subheader>コメント {{ article.article_comments.length }}件</v-subheader>
          <template v-for="(comment, i) in article.article_comments">
            <v-divider
+            class="my-1"
             :key="i"
             inset
            ></v-divider>
-           <v-list-tile
-             :key="comment.id"
-             avatar
-           >
-             <v-list-tile-avatar>
+           <v-list-item>
+             <v-list-item-avatar>
                <v-icon color="primary" large>mdi-account-circle-outline</v-icon>
-             </v-list-tile-avatar>
+             </v-list-item-avatar>
 
-             <v-list-tile-content>
-               <v-list-tile-title v-html="comment.username"></v-list-tile-title>
-               <v-list-tile-sub-title v-html="comment.content"></v-list-tile-sub-title>
-             </v-list-tile-content>
-           </v-list-tile>
+             <v-list-item-content>
+               <v-list-item-title v-html="comment.name"></v-list-item-title>
+               <v-list-item-subtitle v-html="comment.content"></v-list-item-subtitle>
+             </v-list-item-content>
+           </v-list-item>
          </template>
        </v-list>
        <v-list class="py-3">
@@ -97,7 +95,7 @@
              prepend-icon="mdi-at"
              v-model="newComment.email"
              :rules="emailRules"
-             label="メールアドレス (任意)"
+             label="メールアドレス (任意) ※メールアドレスは公開されません"
              required
              ></v-text-field>
            </v-flex>
