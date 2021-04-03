@@ -12,7 +12,9 @@
           <v-btn icon dark @click.stop="handleCloseDialog()">
             <v-icon>mdi-close</v-icon>
           </v-btn>
-          <v-toolbar-title>{{ article.title }}</v-toolbar-title>
+          <v-toolbar-title class="toolbar-title" @click.stop="handleCloseDialog()">
+            H.K's Portfolio Blog
+          </v-toolbar-title>
           <!-- <v-spacer></v-spacer> -->
           <!-- TODO Shareボタン対応 -->
           <!-- <v-btn color="white" outline rounded flat @click="handleShare(article)">Share</v-btn> -->
@@ -20,7 +22,10 @@
           </v-toolbar-items> -->
         </v-toolbar>
         <v-list three-line subheader style="padding-top: 10px;">
-          <h1 class="hidden-md-and-up px-3 font-weight-light display-1">{{ article.title }}</h1>
+          <h1 class="px-3 font-weight-light display-1">{{ article.title }}</h1>
+          <p class="text-right my-1 mr-5">
+            {{ article.created_at | date }}
+          </p>
           <v-layout
           row justify-center py-2
           class="text-xs-center">
@@ -31,9 +36,6 @@
               ></v-img>
             </v-responsive>
           </v-layout>
-          <p class="text-right my-1 mr-5">
-            {{ article.created_at | date }}
-          </p>
           <v-list-item-content class="px-3" v-html="article.content">
           </v-list-item-content>
         </v-list>
@@ -66,7 +68,7 @@
            </v-list-tile>
          </template>
        </v-list>
-       <v-list class="py-0">
+       <v-list class="py-3">
          <v-subheader>コメント欄 ※投稿されたコメントは、管理者の承認後に閲覧可能となります</v-subheader>
        </v-list>
        <v-form ref="commentForm" v-model="validComment" @submit.prevent="postComment()" validation>
@@ -265,7 +267,7 @@ export default {
 </script>
 
 <style lang="css">
-div.v-dialog {
-  background: rgba(0,0,0,0.5);
+.toolbar-title  {
+  cursor: pointer;
 }
 </style>
