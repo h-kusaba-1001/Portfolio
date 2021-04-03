@@ -7,7 +7,7 @@
     class="white--text"
     :height="200"
     :src="article.image_filepath
-        ? article.image_filepath : 'img/front/noimage.jpg'"
+        ? article.image_filepath : '../img/front/noimage.jpg'"
   >
   </v-parallax>
   <v-card-title>

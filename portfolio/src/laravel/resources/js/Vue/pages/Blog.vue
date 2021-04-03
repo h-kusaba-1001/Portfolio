@@ -82,7 +82,7 @@ export default {
     },
     async getArticleDetail(id) {
       this.gonnaLoading();
-      let response = await axios.get("/api/article/" + id)
+      await axios.get("/api/article/" + id)
         .then(response => {
           this.setActiveArticle(response.data)
           this.setPostDialog(true)
