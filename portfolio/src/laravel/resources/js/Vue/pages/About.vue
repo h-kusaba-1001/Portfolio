@@ -1,27 +1,5 @@
 <template>
   <div>
-    <!-- このサイトについて -->
-    <v-card elevation="2"
-      outlined
-      class="mt-3"
-      >
-        <v-card-title class="headline font-weight-thin">
-          このサイトについて
-        </v-card-title>
-        <v-card-text>
-          <div class="text--primary">
-            このサイトは、WEBエンジニア、草場裕史（くさば　ひろふみ）のポートフォリオサイトとなっております。<br>
-            <br>
-            今までの業界経験や知識を生かして、技術の集大成としてこちらを製作しました。<br>
-            下記githubもぜひご覧ください。<br>
-            <a href="https://github.com/h-kusaba-1001/Portfolio" target="_blank">https://github.com/h-kusaba-1001/Portfolio</a><br>
-            <br>
-            また、プロフィール等に関しては、Wantedlyに記載しています。<br>
-            こちらは会員登録されている方のみご覧になれますが、是非ご覧ください。<br>
-            <a href="https://www.wantedly.com/users/56773143" target="_blank">https://www.wantedly.com/users/56773143</a><br>
-          </div>
-        </v-card-text>
-      </v-card>
       <!-- 使用技術 -->
     <v-card
       elevation="2"
