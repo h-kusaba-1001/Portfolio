@@ -26,11 +26,15 @@
       <v-flex xs12 sm6 lg4 pa-2 v-for="(article) in articles" :key="article._id">
         <blog-detail :article="article"></blog-detail>
       </v-flex>
-      <!-- <blog-dialog :article="article"></blog-dialog> -->
-      <!-- <blog-dialog v-if="getActivePost" :article="getActivePost"></blog-dialog> -->
+       <blog-dialog
+           v-if="getActiveArticle"
+          :article="getActiveArticle"
+        ></blog-dialog>
     </v-layout>
-    <div style="display: inline;"
-      class="text-center"
+
+    <!-- pager -->
+    <v-flex style="display: inline;"
+      mt-2
       v-for="(link) in links"
       :key="link._id"
     >
@@ -41,14 +45,12 @@
       >
         {{ link.label }}
       </v-btn>
-    </div>
+    </v-flex>
   </v-container>
 </template>
 
 <script>
-import {mapMutations, mapState} from "vuex"
-
-
+import {mapGetters, mapMutations, mapState} from "vuex"
 
 export default {
   data () {
@@ -63,7 +65,7 @@ export default {
   methods: {
     ...mapMutations([
       "gonnaLoading",
-      "loaded"
+      "loaded",
     ]),
     async axiosArticle(url = "/api/article") {
       this.gonnaLoading();
@@ -76,7 +78,10 @@ export default {
   computed: {
     ...mapState([
       "isLoading"
-    ])
+    ]),
+    ...mapGetters([
+      'getActiveArticle'
+    ]),
   },
   created() {
   },

@@ -1,57 +1,58 @@
 <template lang="html">
   <v-layout row>
-    <v-dialog v-model="postDialog" lazy fullscreen hide-overlay transition="dialog-bottom-transition">
-      <v-flex xs12 md8 offset-md2 lg6 offset-lg3>
-      <v-card v-if="this.article">
-        <v-toolbar dark fixed color="primary">
+    <v-dialog
+      fullscreen
+      hide-overlay
+      v-model="postDialog"
+      transition="dialog-bottom-transition"
+    >
+      <v-flex>
+      <v-card v-if="!isLoading">
+        <v-toolbar fixed dark color="cyan darken-1">
           <v-btn icon dark @click.stop="handleCloseDialog()">
-            <v-icon>close</v-icon>
+            <v-icon>mdi-close</v-icon>
           </v-btn>
           <v-toolbar-title>{{ article.title }}</v-toolbar-title>
-          <v-spacer></v-spacer>
-          <v-btn color="white" outline round flat @click="handleShare(article)">Share</v-btn>
-          <v-toolbar-items>
-          </v-toolbar-items>
+          <!-- <v-spacer></v-spacer> -->
+          <!-- TODO Shareボタン対応 -->
+          <!-- <v-btn color="white" outline rounded flat @click="handleShare(article)">Share</v-btn> -->
+          <!-- <v-toolbar-items>
+          </v-toolbar-items> -->
         </v-toolbar>
-        <v-list three-line subheader style="padding-top: 85px;">
+        <v-list three-line subheader style="padding-top: 10px;">
           <h1 class="hidden-md-and-up px-3 font-weight-light display-1">{{ article.title }}</h1>
-          <v-subheader v-if="article.metadata.author">Posted on {{ article.published_at | date }} by {{ article.metadata.author.metadata.your_name }}</v-subheader>
           <v-layout
           row justify-center py-2
           class="text-xs-center">
             <v-responsive max-width="600px">
-              <v-img :src="article.metadata.featured_image.imgix_url"></v-img>
+              <v-img
+                :src="article.image_filepath
+                  ? '../storage/' + article.image_filepath : '../img/front/noimage.jpg'"
+              ></v-img>
             </v-responsive>
           </v-layout>
-          <v-list-tile-content class="px-3" v-html="article.content">
-          </v-list-tile-content>
+          <p class="text-right my-1 mr-5">
+            {{ article.created_at | date }}
+          </p>
+          <v-list-item-content class="px-3" v-html="article.content">
+          </v-list-item-content>
         </v-list>
-        <!-- <v-divider></v-divider> -->
+        <v-divider></v-divider>
+        <!-- TODO タグボタン対応 -->
         <!-- POST TAGS -->
-        <v-list v-if="article.metadata.post_tags" three-line subheader>
+        <!-- <v-list v-if="article.metadata.post_tags" three-line subheader>
           <v-subheader>Tags</v-subheader>
-        </v-list>
+        </v-list> -->
         <!-- COMMENTS -->
         <v-list three-line subheader>
-        <v-subheader>{{ getPostComments.length }} Comment(s)</v-subheader>
-        <v-alert
-          v-if="getPostComments.length <= 0"
-          :value="true"
-          color="info"
-          icon="info"
-          outline
-          class="mx-3"
-        >
-          Be the first to leave a comment!
-        </v-alert>
-         <template v-for="(comment, i) in getPostComments">
+        <v-subheader>{{ article.article_comments.length }} コメント</v-subheader>
+         <template v-for="(comment, i) in article.article_comments">
            <v-divider
             :key="i"
             inset
            ></v-divider>
-
            <v-list-tile
-             :key="comment._id"
+             :key="comment.id"
              avatar
            >
              <v-list-tile-avatar>
@@ -59,7 +60,7 @@
              </v-list-tile-avatar>
 
              <v-list-tile-content>
-               <v-list-tile-title v-html="comment.metadata.username"></v-list-tile-title>
+               <v-list-tile-title v-html="comment.username"></v-list-tile-title>
                <v-list-tile-sub-title v-html="comment.content"></v-list-tile-sub-title>
              </v-list-tile-content>
            </v-list-tile>
@@ -76,7 +77,7 @@
                md6
              >
                <v-text-field
-                 box
+                 filled
                  prepend-icon="mdi-account"
                  v-model="newComment.name"
                  :rules="nameRules"
@@ -90,7 +91,7 @@
              md6
              >
              <v-text-field
-             box
+             filled
              prepend-icon="mdi-at"
              v-model="newComment.email"
              :rules="emailRules"
@@ -98,12 +99,11 @@
              required
              ></v-text-field>
            </v-flex>
-
            <v-flex
              xs12
            >
              <v-text-field
-               box
+               filled
                prepend-icon="mdi-comment-text"
                v-model="newComment.content"
                :rules="commentRules"
@@ -112,7 +112,7 @@
                required
              ></v-text-field>
              <div class="text-xs-right">
-               <v-btn type="submit" round depressed class="white--text" color="green lighten-1" :disabled="!validComment">Post Comment</v-btn>
+               <v-btn type="submit" rounded depressed class="white--text" color="green lighten-1" :disabled="!validComment">Post Comment</v-btn>
              </div>
            </v-flex>
            </v-layout>
@@ -122,8 +122,8 @@
       </v-flex>
     </v-dialog>
     <!-- SHARE MENU -->
-    <div class="text-xs-center">
-    <v-bottom-sheet v-model="shareSheet">
+    <!-- <div class="text-xs-center">
+    <v-bottom-sheet v-model="shareSheet"> -->
       <!-- <v-btn
         slot="activator"
         color="purple"
@@ -132,7 +132,7 @@
         Click me
       </v-btn> -->
 
-      <v-list>
+      <!-- <v-list>
         <v-subheader>Share via..</v-subheader>
         <v-list-tile
           v-for="(sharer, i) in getShareLinks"
@@ -147,14 +147,15 @@
           </v-list-tile-avatar>
           <v-list-tile-title>{{ sharer.title }}</v-list-tile-title>
         </v-list-tile>
-      </v-list>
+      </v-list> -->
     </v-bottom-sheet>
   </div>
   </v-layout>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import {mapGetters, mapMutations, mapState} from 'vuex'
+
 export default {
   data: () => ({
     newComment: {
@@ -179,10 +180,9 @@ export default {
     shareSheet: false
   }),
   computed: {
-    ...mapGetters([
-      'getShareLinks',
-      'getPostComments',
-      'getSettings'
+    ...mapState([
+      "isLoading",
+      "postDialog"
     ]),
     postDialog: {
       get () {
@@ -194,6 +194,12 @@ export default {
     }
   },
   methods: {
+    ...mapMutations([
+      "gonnaLoading",
+      "loaded",
+      "getArticle",
+      "setActiveArticle"
+    ]),
     postComment () {
       if (this.$refs.commentForm.validate()) {
         this.$store.dispatch('postComment', {
@@ -207,31 +213,32 @@ export default {
         })
       } else { return }
     },
-    handleShare (post) {
-      this.shareSheet = true
-      const payload = { route: this.$route.path, post }
-      this.$store.dispatch('buildShareLinks', payload)
-    },
+    // handleShare (post) {
+    //   this.shareSheet = true
+    //   const payload = { route: this.$route.path, post }
+    //   this.$store.dispatch('buildShareLinks', payload)
+    // },
     handleCloseDialog () {
       this.postDialog = false
       this.$router.go(-1)
-      this.$store.commit('setActivePost', null)
-    }
+      this.$store.commit('setActiveArticle', null)
+    },
   },
   props: {
     article: {
       type: Object,
       required: true,
       default: null
-    }
+    },
   },
   metaInfo () {
     return {
       title: this.article.title,
       titleTemplate: '%s | '+process.env.VUE_APP_TITLE
     }
-  }
+  },
 }
+
 </script>
 
 <style lang="css">

@@ -1,12 +1,13 @@
 <template>
-<!-- <v-card hover flat @click="handlePostcard"> -->
 <v-card hover flat
+  @click="handlePostcard"
   :transition="this.$store.state.transitionStyle"
 >
   <v-parallax
     class="white--text"
     :height="200"
-    :src="article.image_filepath ? 'storage/' + article.image_filepath : 'img/front/noimage.jpg'"
+    :src="article.image_filepath
+        ? 'storage/' + article.image_filepath : 'img/front/noimage.jpg'"
   >
   </v-parallax>
   <v-card-title>
@@ -14,20 +15,16 @@
       <p class="grey--text">{{ article.created_at | date }}</p>
   　　<h2 class="headline">{{ article.title }}</h2>
       <p>
-        {{ article.content | truncate(200) | tailing('...') }}
+        {{ article.content | truncate(200) | tailing('...') }}あああ
       </p>
     </div>
   </v-card-title>
-  <v-card-actions>
-    <v-btn color="success" text outlined dark>
-      <!-- {{ getSettings.metadata.read_more_button }} -->
-    </v-btn>
-  </v-card-actions>
 </v-card>
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import {mapMutations} from 'vuex'
+
 export default {
   props: {
     article: {
@@ -37,39 +34,29 @@ export default {
   },
   data() {
     return {
-      // article: {
-      //   // 
-      // }
     }
   },
   computed: {
-    // ...mapGetters([
-    //   'getSettings'
-    // ]),
-    // postDialog: {
-    //   get () {
-    //     return this.$store.state.postDialog
-    //   },
-    //   set (val) {
-    //     this.$store.commit('setPostDialog', val)
-    //   }
-    // }
+    ...mapMutations([
+      'getSettings'
+    ]),
+    postDialog: {
+      get () {
+        return this.$store.state.postDialog
+      },
+      set (val) {
+        this.$store.commit('setPostDialog', val)
+      }
+    }
   },
   methods: {
-    // handlePostcard () {
-    //   this.$router.push('/post/'+this.article.slug)
-    //   this.$store.commit('setActivePost', this.article)
-    //   this.$store.commit('setPostDialog', true)
-    //   this.$store.dispatch('filter_PostComments', this.article._id)
-    // }
+    handlePostcard () {
+      this.$router.push({ name: "Article", params: { id: this.article.id } })
+      this.$store.commit('setActiveArticle', this.article)
+      this.$store.commit('setPostDialog', true)
+    }
   },
   created () {
-    // console.log(this.article);
-    // if (this.$route.params.id == this.article.slug) {
-    //   this.$store.commit('setActivePost', this.article)
-    //   this.$store.commit('setPostDialog', true)
-    //   this.$store.dispatch('filter_PostComments', this.article._id)
-    // }
   }
 }
 </script>

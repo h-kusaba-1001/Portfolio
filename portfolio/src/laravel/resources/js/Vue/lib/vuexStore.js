@@ -11,14 +11,24 @@ const opt = {
     lazyOptions: {
       threshold: 1.0
     },
+    settings: {},
+    postDialog: false,
+    article: {},
+    activeArticle: null,
   },
   mutations: {
-    gonnaLoading(state) {
+    getSettings: state => { return state.settings },
+    gonnaLoading: state => {
       state.isLoading = true;
     },
-    loaded(state) {
+    loaded: state => {
       state.isLoading = false;
     },
+    setPostDialog: (state, payload) => { state.postDialog = payload },
+    setActiveArticle: (state, payload) => { state.activeArticle = payload },
+  },
+  getters: {
+    getActiveArticle: state => { return state.activeArticle },
   }
 };
 
