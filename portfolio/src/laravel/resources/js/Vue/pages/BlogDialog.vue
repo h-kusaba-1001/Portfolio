@@ -209,7 +209,7 @@ export default {
     async postComment () {
         if (this.$refs.commentForm.validate()) {
             let param = {
-                id: this.article.id,
+                article_id: this.article.id,
                 name: this.newComment.name,
                 email: this.newComment.email,
                 content: this.newComment.content,
@@ -217,10 +217,22 @@ export default {
             //
             await axios.post("/api/comment/", param)
             .then(response => {
-                console.log(response)
+                if (response.status === 200) {
+                    // TODO alertではなくダイアログで表示する
+                    let msg ="コメントが正しく投稿されました。\n"
+                    + "システム管理者の確認後、反映されます。";
+                    alert(msg);
+                }
             })
             .catch(error => {
-                console.log(error.response, error)
+                // バリデーションメッセージが存在する場合、alert
+                if (error.response.data.errors) {
+                    let msg = "";
+                    Object.keys(error.response.data.errors).forEach(function(key) {
+                        msg += error.response.data.errors[key] + "\n";
+                    });
+                    alert(msg);
+                }
             })
       } else { return }
     },
