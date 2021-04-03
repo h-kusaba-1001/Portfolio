@@ -16,7 +16,10 @@ class CreateArticleCommentsTable extends Migration
         Schema::create('article_comments', function (Blueprint $table) {
             $table->id();
             $table->foreignId('article_id');
-            $table->text('content')->comment('コメント本文');
+            $table->string('name', 50)->comment('お名前');
+            $table->string('email', 255)->nullable()->comment('メールアドレス');
+            $table->string('content', 255)->comment('コメント本文');
+            $table->boolean('permission_flg')->default(false)->comment('承認フラグ');
             $table->timestamps();
             $table->softDeletes();
 
