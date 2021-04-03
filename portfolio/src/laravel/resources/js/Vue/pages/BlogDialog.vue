@@ -27,7 +27,7 @@
             <v-responsive max-width="600px">
               <v-img
                 :src="article.image_filepath
-                  ? '../storage/' + article.image_filepath : '../img/front/noimage.jpg'"
+                  ? article.image_filepath : '/img/front/noimage.jpg'"
               ></v-img>
             </v-responsive>
           </v-layout>

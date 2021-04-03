@@ -27,7 +27,7 @@
                                 <th>{{ $Article->id }}</th>
                                 <td class="w-25">
                                     @if (!is_null($Article->image_filepath))
-                                        <img src="{{ asset('storage/' . $Article->image_filepath) }}" class="img-fluid img-thumbnail">
+                                        <img src="{{ $Article->image_filepath }}" class="img-fluid img-thumbnail">
                                     @endif
                                 </td>
                                 <td>{{ $Article->title }}</td>

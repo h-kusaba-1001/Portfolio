@@ -65,7 +65,7 @@ class ArticleController extends Controller
         $vals = $form->getFieldValues();
         // 画像ファイルパスの追加
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
-            $vals['image_filepath'] = $request->image->store('article', 'public');
+            $vals['image_filepath'] = url('storage/'.$request->image->store('article', 'public'));
         }
 
         $result = Article::create($vals);
@@ -94,7 +94,7 @@ class ArticleController extends Controller
      */
     public function show($id)
     {
-        // 
+        //
     }
 
     /**
@@ -144,7 +144,7 @@ class ArticleController extends Controller
         $vals = $form->getFieldValues();
         // 画像ファイルパスの追加
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
-            $vals['image_filepath'] = $request->image->store('article', 'public');
+            $vals['image_filepath'] = url('storage/'.$request->image->store('article', 'public'));
         }
         $Article->fill($vals);
         $result = $Article->save();
