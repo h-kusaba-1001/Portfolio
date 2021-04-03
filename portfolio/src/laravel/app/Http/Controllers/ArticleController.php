@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
 use App\Service\ArticleService;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -33,7 +34,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        // 
+        //
     }
 
     /**
@@ -44,18 +45,20 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        // 
+        //
     }
 
     /**
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Article|Illuminate\Database\Eloquent\ModelNotFoundException
      */
     public function show($id)
     {
-        // 
+        return $Article = Article::with([
+                'articleComments'
+            ])->FindOrFail($id);
     }
 
     /**
@@ -66,7 +69,7 @@ class ArticleController extends Controller
      */
     public function edit($id)
     {
-        // 
+        //
     }
 
     /**
@@ -78,7 +81,7 @@ class ArticleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // 
+        //
     }
 
     /**
@@ -87,8 +90,8 @@ class ArticleController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy($id) 
+    public function destroy($id)
     {
-        // 
+        //
     }
 }

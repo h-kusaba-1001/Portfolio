@@ -39,7 +39,7 @@
       :key="link._id"
     >
       <v-btn
-        @click="axiosArticle(link.url)"
+        @click="getArticleList(link.url)"
         :disabled="link.url == null || link.active"
         v-html="link.label"
       >
@@ -66,12 +66,34 @@ export default {
     ...mapMutations([
       "gonnaLoading",
       "loaded",
+      "setActiveArticle",
+      "setPostDialog"
     ]),
-    async axiosArticle(url = "/api/article") {
+    async getArticleList(url = "/api/article") {
       this.gonnaLoading();
       let response = await axios.get(url)
       this.articles = response.data.data
       this.links = response.data.links
+      this.loaded();
+      // IDが入力されている場合は、該当のブログ記事を検索する
+      if(this.$route.name === "blogDetail") {
+          this.getArticleDetail(this.$route.params.id)
+      }
+    },
+    async getArticleDetail(id) {
+      this.gonnaLoading();
+      let response = await axios.get("/api/article/" + id)
+        .then(response => {
+          this.setActiveArticle(response.data)
+          this.setPostDialog(true)
+        })
+      .catch(error => {
+        if (error.response.status === 404) {
+            alert("お探しの記事は見つかりませんでした。")
+        }
+        // ブログ一覧へ返す
+        this.$router.push({ name: "blog"})
+      })
       this.loaded();
     },
   },
@@ -86,7 +108,7 @@ export default {
   created() {
   },
   mounted() {
-    this.axiosArticle();
+    this.getArticleList();
   },
   metaInfo: {
     title: 'Home',

@@ -15,8 +15,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['as' => 'front.'], function () {
     Route::view('/', 'front.index')->name('home');
-    Route::view('/blog', 'front.index')->name('blogList');
     Route::view('/about', 'front.index')->name('about');
+    Route::group(['prefix' => 'blog', 'as' => 'blog.'], function () {
+        Route::view('/', 'front.index')->name('list');
+        Route::view('/{id}', 'front.index')->name('detail');
+    });
 });
 
 Route::group(['as' => 'api.', 'prefix' => 'api'], function () {

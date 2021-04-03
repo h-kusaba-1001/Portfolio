@@ -19,6 +19,9 @@ class ArticleService
                 'articleComments as comment_num',
                 'likes as like_num',
             ])
+            ->with([
+              'articleComments'
+            ])
             ->latest();
 
         return $article_query;

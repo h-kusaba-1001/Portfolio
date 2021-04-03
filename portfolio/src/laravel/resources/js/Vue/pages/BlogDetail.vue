@@ -51,7 +51,7 @@ export default {
   },
   methods: {
     handlePostcard () {
-      this.$router.push({ name: "Article", params: { id: this.article.id } })
+      this.$router.push({ name: "blogDetail", params: { id: this.article.id } })
       this.$store.commit('setActiveArticle', this.article)
       this.$store.commit('setPostDialog', true)
     }
