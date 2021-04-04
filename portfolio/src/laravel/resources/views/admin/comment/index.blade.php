@@ -14,6 +14,9 @@
             <button class="btn btn-primary" id="update-permission">
                 承認
             </button>
+            <button class="btn btn-danger" id="bulk-delete">
+                削除
+            </button>
             <div class="card-body">
                 <table class="table">
                     <thead>
@@ -54,6 +57,7 @@
     </div>
 </div>
 {{ Form::hidden('update_route', route('admin.comment.bulk_update_permission')) }}
+{{ Form::hidden('delete_route', route('admin.comment.bulk_delete')) }}
 @endsection
 
 @push('scripts')

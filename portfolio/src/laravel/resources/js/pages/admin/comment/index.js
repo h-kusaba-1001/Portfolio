@@ -32,6 +32,29 @@ $('#update-permission').on("click", function() {
         "json"
     )
 });
+// 一括削除
+$('#bulk-delete').on("click", function() {
+    let commentIds = getCommentIds();
+    if (commentIds.length === 0) {
+        alert("選択してください。");
+        return false;
+    }
+    $.post(
+        $('input[name="delete_route"]').val(),
+        {
+            "_token": $('meta[name="csrf-token"]').attr('content'),
+            "_method": "DELETE",
+            "commentIds": commentIds
+        },
+        function(data, status) {
+            if (status === "success") {
+                alert(data + "件の削除に成功しました。\n画面を再読み込みします。")
+                location.reload();
+            }
+        },
+        "json"
+    )
+});
 
 function getCommentIds() {
     return $('.checkbox-comment-id:checked').map(function() {

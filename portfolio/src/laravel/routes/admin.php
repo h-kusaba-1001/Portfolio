@@ -25,6 +25,7 @@ Route::group(['prefix' => config('const.admin_url'), 'as' => 'admin.', 'namespac
         Route::resource('article', 'ArticleController')->except(['show']);
         Route::resource('comment', 'CommentController')->only(['index']);
         Route::post('comment/bulk_update_permission', 'CommentController@bulkUpdatePermission')->name('comment.bulk_update_permission');
+        Route::delete('comment/bulk_delete', 'CommentController@bulkDelete')->name('comment.bulk_delete');
     });
 });
 

@@ -119,4 +119,21 @@ class CommentController extends Controller
         );
         return $resultNum;
     }
+
+    /**
+     * bulkUpdatePermission
+     *
+     * @param  BulkUpdatePermissionRequest $request 実際にはbulkUpdateではないが、バリデーションメソッドを使いまわす
+     * @return int $resultNum
+     */
+    public function bulkDelete(BulkUpdatePermissionRequest $request)
+    {
+        $resultNum = ArticleComment::destroy($request->commentIds);
+
+        session()->flash(
+            'success',
+            'ArticleComment:コメントの削除に成功しました ' . $resultNum . '件'
+        );
+        return $resultNum;
+    }
 }
