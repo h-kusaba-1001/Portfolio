@@ -28,10 +28,16 @@ class ArticleComment extends Model
     /**
      * getPermissionStringAttribute
      *
-     * @return string
+     * @return string $result
      */
     public function getPermissionStringAttribute() : string
     {
-        return '';
+        $result = '';
+        if($this->permission_flg === config('project.const.flg.on')) {
+            $result = '承認';
+        } else if ($this->permission_flg === config('project.const.flg.off')) {
+            $result = '未承認';
+        }
+        return $result;
     }
 }

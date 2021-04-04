@@ -21,11 +21,13 @@
                 <table class="table">
                     <thead>
                         <tr>
+                            <th scope="col"></th>
                             <th scope="col">ID</th>
                             <th scope="col">ブログID</th>
                             <th scope="col">名前</th>
                             <th scope="col">タイトル</th>
                             <th scope="col">メールアドレス</th>
+                            <th scope="col">承認/未承認</th>
                             <th scope="col">作成日時</th>
                         </tr>
                     </thead>
@@ -42,6 +44,11 @@
                                 <td>{{ $Comment->name }}</td>
                                 <td>{{ $Comment->content }}</td>
                                 <td>{{ $Comment->email }}</td>
+                                {{-- 未承認の場合、赤字で記す --}}
+                                <td class="{{ $Comment->permission_flg === config('project.const.flg.off') ? 'text-danger' : '' }}"
+                                >
+                                    {{ $Comment->permission_string }}
+                                </td>
                                 <td>{{ $Comment->created_at }}</td>
                             </tr>
                         @empty
