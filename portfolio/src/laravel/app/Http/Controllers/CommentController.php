@@ -40,6 +40,7 @@ class CommentController extends Controller
         $ArticleComment->fill([
             'article_id' => $request->article_id,
             'name' => $request->name,
+            'email' => $request->email,
             'content' => $request->content,
             // 承認フラグは、MySQL側のdefaultで0とする
         ]);

@@ -41,7 +41,7 @@
                                     <a class="nav-link" href="{{ route('admin.login_form') }}">{{ __('Login') }}</a>
                                 </li>
                             @endif
-                            
+
                             @if (Route::has('register'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('admin.register') }}">{{ __('Register') }}</a>
@@ -88,5 +88,6 @@
         </main>
     </div>
 </body>
+<script src="{{ mix('js/app.js') }}"></script>
 @stack('scripts')
 </html>
