@@ -56,8 +56,10 @@ class ArticleController extends Controller
      */
     public function show($id)
     {
-        return $Article = Article::with([
-                'articleComments'
+        return Article::with([
+                'articleComments' => function($query) {
+                    return $query->permitted();
+                }
             ])->FindOrFail($id);
     }
 

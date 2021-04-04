@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Like;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class ArticleComment extends Model
@@ -39,5 +40,16 @@ class ArticleComment extends Model
             $result = '未承認';
         }
         return $result;
+    }
+
+    /**
+     * 承認済みのスコープ
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopePermitted($query) : Builder
+    {
+        return $query->where('permission_flg', config('project.const.flg.on'));
     }
 }

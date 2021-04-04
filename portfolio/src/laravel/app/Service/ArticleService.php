@@ -19,9 +19,6 @@ class ArticleService
                 'articleComments as comment_num',
                 'likes as like_num',
             ])
-            ->with([
-              'articleComments'
-            ])
             ->latest();
 
         return $article_query;
@@ -46,6 +43,11 @@ class ArticleService
     public function getArticleListForFront() : LengthAwarePaginator
     {
         $article_query = $this->getArticleQuery();
+        $article_query->with([
+                'articleComments' => function($query) {
+                    return $query->permitted();
+                }
+            ]);
         return $article_query->paginate(config('project.const.per_page.front'));
     }
 }
