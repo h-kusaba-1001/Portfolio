@@ -27,11 +27,14 @@ class CommentController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param  \Illuminate\Http\Request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $Comments = $this->articleCommentService->getCommentListForAdmin();
+        $req = $request->query();
+        $Comments = $this->articleCommentService->getCommentListForAdmin($req)
+            ->appends($req);
 
         return view('admin.comment.index', compact('Comments'));
     }

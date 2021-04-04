@@ -5,6 +5,23 @@
     <div class="col-md-8">
         <div class="card">
             <div class="card-header">コメント 一覧</div>
+            {!! Form::open(['url' => route('admin.comment.index'), 'method' => 'GET']) !!}
+                {!! Form::radio(
+                    'only_not_permitted',
+                    1,
+                    request()->only_not_permitted == 1 || is_null(request()->only_not_permitted),
+                    ['id' => 'only_not_permitted_on'])
+                !!}
+                {!! Form::label('only_not_permitted_on', '未承認のみを表示') !!}
+                {!! Form::radio(
+                    'only_not_permitted',
+                    0,
+                    request()->only_not_permitted == 0 && is_numeric(request()->only_not_permitted),
+                    ['id' => 'only_not_permitted_off'])
+                !!}
+                {!! Form::label('only_not_permitted_off', '承認済みを含めて表示') !!}
+                {!! Form::submit('検索', ['class' => 'btn btn-default']) !!}
+            {!! Form::close() !!}
             <button class="btn btn-default" id="all-check">
                 全選択
             </button>
