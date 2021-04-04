@@ -23,6 +23,8 @@ Route::group(['prefix' => config('const.admin_url'), 'as' => 'admin.', 'namespac
 
         // ブログ記事
         Route::resource('article', 'ArticleController')->except(['show']);
+        Route::resource('comment', 'CommentController')->only(['index']);
+        Route::post('comment/bulk_update_permission', 'CommentController@bulkUpdatePermission')->name('comment.bulk_update_permission');
     });
 });
 

@@ -9,6 +9,7 @@
                 <div class="card-body">
                     You are logged in as 管理者!
                     <a class="btn btn-primary btn-block" role="button" href="{{ route('admin.article.index') }}">ブログ</a>
+                    <a class="btn btn-primary btn-block" role="button" href="{{ route('admin.comment.index') }}">コメント</a>
                 </div>
             </div>
         </div>
