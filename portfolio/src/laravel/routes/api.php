@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['as' => 'api.'], function () {
+    // ブログ記事
+    Route::resource('article', 'ArticleController')->only(['index', 'show']);
+    Route::resource('comment', 'CommentController')->only(['store']);
 });

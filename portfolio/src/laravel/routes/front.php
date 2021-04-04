@@ -22,8 +22,3 @@ Route::group(['as' => 'front.'], function () {
     });
 });
 
-Route::group(['as' => 'api.', 'prefix' => 'api'], function () {
-    // ブログ記事
-    Route::resource('article', 'ArticleController')->only(['index', 'show']);
-    Route::resource('comment', 'CommentController')->only(['store']);
-});
