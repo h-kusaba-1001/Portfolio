@@ -24,11 +24,22 @@ class LoginController extends Controller
     use AuthenticatesUsers;
 
     /**
-     * Where to redirect users after login.
+     * decayMinutes
+     * 6h
      *
-     * @var string
+     * @var int
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $decayMinutes = 360;
+
+    /**
+     * redirectTo
+     *
+     * @return string
+     */
+    public function redirectTo()
+    {
+        return '/'.config('const.admin_url');
+    }
 
     /**
      * Create a new controller instance.
@@ -46,18 +57,31 @@ class LoginController extends Controller
         return view('admin.auth.login', ['authgroup' => 'admin']);
     }
 
+    /**
+     * {@inheritdoc}
+     */
+    protected function validateLogin(Request $request)
+    {
+        $request->validate([
+            $this->username() => 'required|email',
+            'password' => 'required',
+        ]);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function login(Request $request)
     {
-        $this->validate($request, [
-            'email'   => 'required|email',
-            'password' => 'required|min:6'
-        ]);
+        $this->validateLogin($request);
 
-        if (Auth::guard('admin_users')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
-
-            return redirect()->intended(route('admin.home'));
+        if ($this->attemptLogin($request)) {
+            return $this->sendLoginResponse($request);
         }
-        return back()->withInput($request->only('email', 'remember'));
+
+        $this->incrementLoginAttempts($request);
+
+        return $this->sendFailedLoginResponse($request);
     }
 
     /**
@@ -68,7 +92,7 @@ class LoginController extends Controller
      */
     public function logout(Request $request)
     {
-        Auth::guard('admin_users')->logout();
+        $this->guard()->logout();
 
         $request->session()->invalidate();
 
@@ -81,5 +105,15 @@ class LoginController extends Controller
         return $request->wantsJson()
         ? new JsonResponse([], 204)
         : redirect(route('admin.login_form'));
+    }
+
+    /**
+     * Get the guard to be used during authentication.
+     *
+     * @return \Illuminate\Contracts\Auth\StatefulGuard
+     */
+    protected function guard()
+    {
+        return Auth::guard('admin_users');
     }
 }
