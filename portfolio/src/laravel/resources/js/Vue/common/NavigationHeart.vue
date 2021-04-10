@@ -1,9 +1,11 @@
 <template>
-  <v-btn icon v-if="isEnableLike !== false" @click="like()">
+  <div v-if="isEnableLike !== false" class="text-center d-flex align-center justify-space-around mr-4">
+    <v-btn icon @click="like()">
     <v-icon>mdi-heart-outline</v-icon>
     {{ likeNum }}
   </v-btn>
-  <div v-else class="text-center d-flex align-center justify-space-around">
+  </div>
+  <div v-else class="text-center d-flex align-center justify-space-around mr-4">
     <v-tooltip bottom>
     <template v-slot:activator="{ on, attrs }">
       <v-btn
@@ -15,7 +17,7 @@
         {{ likeNum }}
       </v-btn>
     </template>
-    <span>いいねは1日1回のみ可能です</span>
+    <span>Thank You!</span>
     </v-tooltip>
   </div>
 </template>
