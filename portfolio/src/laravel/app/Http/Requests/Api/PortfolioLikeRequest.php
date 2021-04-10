@@ -5,7 +5,7 @@ namespace App\Http\Requests\Api;
 use App\Service\LikeService;
 use Illuminate\Foundation\Http\FormRequest;
 
-class BlogLikeRequest extends FormRequest
+class PortfolioLikeRequest extends FormRequest
 {
     /**
      * likeService
@@ -57,7 +57,7 @@ class BlogLikeRequest extends FormRequest
     {
         $validator->after(function ($validator) {
             // ポートフォリオのいいね可能かどうかを確認するバリデーション
-            if (false === $this->likeService->getIsEnableLikeForBlog($this->ip())) {
+            if (false === $this->likeService->getIsEnableLikeForPortfolio($this->ip())) {
                 $validator->errors()->add('invalid_like', __('validation.custom.like.invalid_like'));
             }
         });

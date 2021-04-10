@@ -7,29 +7,29 @@ use App\Models\Like;
 class LikeService
 {
     /**
-     * getBlogLikesInfo
+     * getPortofolioLikesInfo
      *
      * @param  string $ip
      * @return array
      */
-    public function getBlogLikesInfo(string $ip) : array
+    public function getPortofolioLikesInfo(string $ip): array
     {
         $likeNum = Like::whereNull('article_id')
             ->whereNull('comment_id')
             ->count();
 
-        $isEnableLike = $this->getIsEnableLikeForBlog($ip);
+        $isEnableLike = $this->getIsEnableLikeForPortfolio($ip);
 
         return compact(['likeNum', 'isEnableLike']);
     }
 
     /**
-     * getIsEnableLikeForBlog
+     * getIsEnableLikeForPortfolio
      *
      * @param  string $ip
      * @return bool
      */
-    public function getIsEnableLikeForBlog(string $ip): bool
+    public function getIsEnableLikeForPortfolio(string $ip): bool
     {
         $todayLikeNumFromIp = Like::whereNull('article_id')
             ->whereNull('comment_id')
@@ -40,12 +40,12 @@ class LikeService
     }
 
     /**
-     * likeBlog
+     * likePortfolio
      *
      * @param  string $ip
      * @return void
      */
-    public function likeBlog(string $ip)
+    public function likePortfolio(string $ip)
     {
         $like = new Like;
         $like->ip_address = $ip;

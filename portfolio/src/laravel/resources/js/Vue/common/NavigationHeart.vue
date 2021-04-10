@@ -37,7 +37,7 @@ export default {
     ]),
     async getLikeInfo() {
       this.gonnaLoading();
-      await axios.get("/api/like/blog")
+      await axios.get("/api/like/portfolio")
         .then(response => {
             this.isEnableLike = response.data.isEnableLike;
             this.likeNum = response.data.likeNum;
@@ -49,7 +49,7 @@ export default {
     },
     async like() {
       this.gonnaLoading();
-      await axios.post("/api/like/blog")
+      await axios.post("/api/like/portfolio")
         .then(response => {
             // 成功した場合は、いいね数を1カウントアップし、いいね不可の状態にする
             this.likeNum ++;

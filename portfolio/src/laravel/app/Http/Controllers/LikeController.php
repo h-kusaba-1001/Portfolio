@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Api\BlogLikeRequest;
+use App\Http\Requests\Api\PortfolioLikeRequest;
 use App\Service\LikeService;
 use Illuminate\Http\Request;
 
@@ -27,97 +27,21 @@ class LikeController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-
-    /**
      * @param  Request $request
-     * @return \Illuminate\Http\Response
+     * @return array
      */
-    public function getBlogLikeInfo(Request $request)
+    public function getPortofolioLikesInfo(Request $request): array
     {
-        // ブログのいいね数と、いいね可能かどうかを取得
-        return $this->likeService->getBlogLikesInfo($request->ip());
+        // ポートフォリオのいいね数と、いいね可能かどうかを取得
+        return $this->likeService->getPortofolioLikesInfo($request->ip());
     }
 
     /**
-     * @param  BlogLikeRequest $request
+     * @param  PortfolioLikeRequest $request
      * @return void
      */
-    public function likeBlog(BlogLikeRequest $request)
+    public function likePortfolio(PortfolioLikeRequest $request)
     {
-        $this->likeService->likeBlog($request->ip());
+        $this->likeService->likePortfolio($request->ip());
     }
 }
