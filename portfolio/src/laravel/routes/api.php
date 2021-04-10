@@ -18,4 +18,9 @@ Route::group(['as' => 'api.'], function () {
     // ブログ記事
     Route::resource('article', 'ArticleController')->only(['index', 'show']);
     Route::resource('comment', 'CommentController')->only(['store']);
+
+    // いいね
+    Route::group(['prefix' => 'like', 'as' => 'like.'], function () {
+        Route::get('/blog', 'LikeController@getBlogLikes');
+    });
 });
