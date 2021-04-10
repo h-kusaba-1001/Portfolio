@@ -48,8 +48,24 @@ export default {
       this.loaded();
     },
     async like() {
-      console.log("like!")
-      // TODO 言い値機能を実装する
+      this.gonnaLoading();
+      await axios.post("/api/like/blog")
+        .then(response => {
+            // 成功した場合は、いいね数を1カウントアップし、いいね不可の状態にする
+            this.likeNum ++;
+            this.isEnableLike = false;
+        })
+        .catch(error => {
+            // バリデーションメッセージが存在する場合、alert
+            if (error.response.data.errors) {
+                let msg = "";
+                Object.keys(error.response.data.errors).forEach(function(key) {
+                    msg += error.response.data.errors[key] + "\n";
+                });
+                alert(msg);
+            }
+        })
+      this.loaded();
     },
   },
   mounted() {

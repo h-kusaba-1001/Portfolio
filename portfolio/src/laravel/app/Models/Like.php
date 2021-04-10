@@ -33,6 +33,6 @@ class Like extends Model
     public function scopeEnableLike(Builder $query, string $ip): Builder
     {
         return $query->where('ip_address', $ip)
-            ->where('created_at', '>=', date('Y-m-d H:i:s'));
+            ->where('created_at', '>=', date('Y-m-d 00:00:00'));
     }
 }

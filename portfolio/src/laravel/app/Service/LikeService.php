@@ -29,7 +29,7 @@ class LikeService
      * @param  string $ip
      * @return bool
      */
-    private function getIsEnableLikeForBlog(string $ip): bool
+    public function getIsEnableLikeForBlog(string $ip): bool
     {
         $todayLikeNumFromIp = Like::whereNull('article_id')
             ->whereNull('comment_id')
@@ -37,6 +37,19 @@ class LikeService
             ->count();
 
         return $this->getIsEnableLike($todayLikeNumFromIp);
+    }
+
+    /**
+     * likeBlog
+     *
+     * @param  string $ip
+     * @return void
+     */
+    public function likeBlog(string $ip)
+    {
+        $like = new Like;
+        $like->ip_address = $ip;
+        $like->save();
     }
 
     /**

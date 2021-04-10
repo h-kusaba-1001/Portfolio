@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\Api\BlogLikeRequest;
 use App\Service\LikeService;
+use Illuminate\Http\Request;
 
 class LikeController extends Controller
 {
@@ -109,5 +110,14 @@ class LikeController extends Controller
     {
         // ブログのいいね数と、いいね可能かどうかを取得
         return $this->likeService->getBlogLikesInfo($request->ip());
+    }
+
+    /**
+     * @param  BlogLikeRequest $request
+     * @return void
+     */
+    public function likeBlog(BlogLikeRequest $request)
+    {
+        $this->likeService->likeBlog($request->ip());
     }
 }
