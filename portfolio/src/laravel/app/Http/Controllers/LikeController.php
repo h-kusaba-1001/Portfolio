@@ -105,7 +105,7 @@ class LikeController extends Controller
      * @param  Request $request
      * @return \Illuminate\Http\Response
      */
-    public function getBlogLikes(Request $request)
+    public function getBlogLikeInfo(Request $request)
     {
         // ブログのいいね数と、いいね可能かどうかを取得
         return $this->likeService->getBlogLikesInfo($request->ip());

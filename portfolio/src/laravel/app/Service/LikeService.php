@@ -18,20 +18,31 @@ class LikeService
             ->whereNull('comment_id')
             ->count();
 
-        $todayLikeNumFromIp = Like::whereNull('article_id')
-            ->whereNull('comment_id')
-            ->enableLike($ip)
-            ->count();
-
-        $isEnableLike = $this->getIsEnableLike($todayLikeNumFromIp);
+        $isEnableLike = $this->getIsEnableLikeForBlog($ip);
 
         return compact(['likeNum', 'isEnableLike']);
     }
 
     /**
+     * getIsEnableLikeForBlog
+     *
+     * @param  string $ip
+     * @return bool
+     */
+    private function getIsEnableLikeForBlog(string $ip): bool
+    {
+        $todayLikeNumFromIp = Like::whereNull('article_id')
+            ->whereNull('comment_id')
+            ->enableLike($ip)
+            ->count();
+
+        return $this->getIsEnableLike($todayLikeNumFromIp);
+    }
+
+    /**
      * getIsEnableLike
      *
-     * @param  mixed $todayLikeNumFromIp
+     * @param  int $todayLikeNumFromIp
      * @return bool
      */
     private function getIsEnableLike(int $todayLikeNumFromIp): bool

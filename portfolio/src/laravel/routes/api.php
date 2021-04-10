@@ -21,6 +21,7 @@ Route::group(['as' => 'api.'], function () {
 
     // いいね
     Route::group(['prefix' => 'like', 'as' => 'like.'], function () {
-        Route::get('/blog', 'LikeController@getBlogLikes');
+        // ブログ
+        Route::get('/blog', 'LikeController@getBlogLikeInfo');
     });
 });
