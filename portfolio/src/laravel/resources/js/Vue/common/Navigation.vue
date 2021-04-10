@@ -10,7 +10,8 @@
       <v-toolbar-title>H.Kusaba's Portfolio</v-toolbar-title>
 
       <v-spacer></v-spacer>
-    </v-toolbar>
+      <navigation-heart></navigation-heart>
+    </v-app-bar>
     <v-navigation-drawer
         v-model="displaySideBar"
         fixed
@@ -43,7 +44,9 @@
 </template>
 
 <script>
+import NavigationHeart from './NavigationHeart.vue'
 export default {
+  components: { NavigationHeart },
   data() {
     return {
       displaySideBar: false,
