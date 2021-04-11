@@ -4,24 +4,24 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
+require("./bootstrap");
 
-window.Vue = require('vue').default;
+window.Vue = require("vue").default;
 
-import vuetify from './Vue/lib/vuetify'
-import router from './Vue/lib/router'
-import vuexStore from './Vue/lib/vuexStore'
+import vuetify from "./Vue/lib/vuetify";
+import router from "./Vue/lib/router";
+import vuexStore from "./Vue/lib/vuexStore";
 
 // blade.php向けに、別途vuetifyのコンポーネントを読み込んでおく
-import { VApp, VProgressLinear, VMain, VContainer } from 'vuetify/lib'
+import { VApp, VProgressLinear, VMain, VContainer } from "vuetify/lib";
 
-const axiosBase = require('axios');
+const axiosBase = require("axios");
 const axios = axiosBase.create({
-  headers: {
-    'Content-Type': 'application/json',
-    'X-Requested-With': 'XMLHttpRequest'
-  },
-  responseType: 'json'
+    headers: {
+        "Content-Type": "application/json",
+        "X-Requested-With": "XMLHttpRequest",
+    },
+    responseType: "json",
 });
 
 /**
@@ -31,8 +31,12 @@ const axios = axiosBase.create({
  *
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
-const files = require.context('./Vue', true, /\.vue$/i);
-files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
+const files = require.context("./Vue", true, /\.vue$/i);
+files
+    .keys()
+    .map((key) =>
+        Vue.component(key.split("/").pop().split(".")[0], files(key).default)
+    );
 
 // Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 // Vue.component('navigation', require('./components/common/Navigation.vue').default);
@@ -43,20 +47,19 @@ files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-
 // Filters
-import DateFilter from './Vue/filters/Date'
+import DateFilter from "./Vue/filters/Date";
 // filter
-Vue.filter('date', DateFilter)
-Vue.filter('truncate', function(value, limit) {
-  return value.substring(0, limit)
-})
-Vue.filter('tailing', function(value, tail) {
-  return value + tail
-})
+Vue.filter("date", DateFilter);
+Vue.filter("truncate", function (value, limit) {
+    return value.substring(0, limit);
+});
+Vue.filter("tailing", function (value, tail) {
+    return value + tail;
+});
 
 const app = new Vue({
-    el: '#app',
+    el: "#app",
     vuetify: vuetify,
     router: router,
     store: vuexStore,
@@ -64,16 +67,15 @@ const app = new Vue({
         VApp,
         VProgressLinear,
         VMain,
-        VContainer
+        VContainer,
     },
     data() {
-        return {
-        }
+        return {};
     },
     created() {
         this.$store.commit("gonnaLoading");
     },
-    beforeMounted() {
+    beforeMount() {
         this.$store.commit("loaded");
     },
 });
