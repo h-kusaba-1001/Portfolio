@@ -1,0 +1,24 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true,
+        "jquery": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:vue/base",
+        "plugin:prettier/recommended"
+    ],
+    "parserOptions": {
+        "ecmaVersion": 12,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "vue",
+        "vuetify"
+    ],
+    "rules": {
+        "vuetify/no-deprecated-classes": "error",
+        "prettier/prettier": "error"
+    }
+}
