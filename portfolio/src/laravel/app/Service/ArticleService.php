@@ -38,16 +38,23 @@ class ArticleService
     /**
      * getArticleListForFront
      *
+     * @param  string $ip
      * @return LengthAwarePaginator
      */
-    public function getArticleListForFront() : LengthAwarePaginator
+    public function getArticleListForFront(string $ip) : LengthAwarePaginator
     {
         $article_query = $this->getArticleQuery();
         $article_query->with([
                 'articleComments' => function($query) {
                     return $query->permitted();
                 }
+            ])
+            ->withCount([
+                'likes as today_like_num_from_ip' => function($query) use($ip) {
+                    return $query->enableLike($ip);
+                }
             ]);
+
         return $article_query->paginate(config('project.const.per_page.front'));
     }
 }

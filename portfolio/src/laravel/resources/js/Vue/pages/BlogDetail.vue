@@ -1,34 +1,46 @@
 <template>
-    <v-card
-        hover
-        flat
-        @click="handlePostcard"
-        :transition="this.$store.state.transitionStyle"
-    >
-        <v-parallax
-            class="white--text"
-            :height="200"
-            :src="
-                article.image_filepath
-                    ? article.image_filepath
-                    : '../img/front/noimage.jpg'
-            "
+    <div class="mb-4">
+        <v-card
+            hover
+            flat
+            @click="handlePostcard"
+            :transition="this.$store.state.transitionStyle"
         >
-        </v-parallax>
-        <v-card-title>
-            <div>
-                <p class="grey--text">{{ article.created_at | date }}</p>
-                <h2 class="text-h5">{{ article.title }}</h2>
-                <p>
-                    {{ article.content | truncate(200) | tailing("...") }}
-                </p>
-            </div>
-        </v-card-title>
-    </v-card>
+            <v-parallax
+                class="white--text"
+                :height="200"
+                :src="
+                    article.image_filepath
+                        ? article.image_filepath
+                        : '../img/front/noimage.jpg'
+                "
+            >
+            </v-parallax>
+            <v-card-title>
+                <div>
+                    <p class="grey--text">{{ article.created_at | date }}</p>
+                    <h2 class="text-h5">{{ article.title }}</h2>
+                    <p>
+                        {{ article.content | truncate(200) | tailing("...") }}
+                    </p>
+                </div>
+            </v-card-title>
+        </v-card>
+        <like
+            :likeNum="article.like_num"
+            :todayLikeNumFromIp="article.today_like_num_from_ip"
+            apiUrl="/api/like/article"
+            :postParam="{
+                article_id: article.id,
+            }"
+        ></like>
+        <v-row class="align-right"> </v-row>
+    </div>
 </template>
 
 <script>
 import { mapMutations } from "vuex";
+import Like from "@/Vue/components/Like.vue";
 
 export default {
     props: {
@@ -37,6 +49,7 @@ export default {
             required: true,
         },
     },
+    components: { Like },
     data() {
         return {};
     },

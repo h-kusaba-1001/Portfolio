@@ -24,5 +24,7 @@ Route::group(['as' => 'api.'], function () {
         // ポートフォリオ
         Route::get('/portfolio', 'LikeController@getPortofolioLikesInfo');
         Route::post('/portfolio', 'LikeController@likePortfolio');
+        // ブログ
+        Route::post('/article', 'LikeController@likeArticle');
     });
 });

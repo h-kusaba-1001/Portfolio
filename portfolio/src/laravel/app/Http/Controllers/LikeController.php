@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Api\ArticleLikeRequest;
 use App\Http\Requests\Api\PortfolioLikeRequest;
 use App\Service\LikeService;
 use Illuminate\Http\Request;
@@ -37,11 +38,24 @@ class LikeController extends Controller
     }
 
     /**
+     * ポートフォリオのいいね機能
+     *
      * @param  PortfolioLikeRequest $request
      * @return void
      */
     public function likePortfolio(PortfolioLikeRequest $request)
     {
         $this->likeService->likePortfolio($request->ip());
+    }
+
+    /**
+     * ブログ記事のいいね機能
+     *
+     * @param  ArticleLikeRequest $request
+     * @return void
+     */
+    public function likeArticle(ArticleLikeRequest $request)
+    {
+        $this->likeService->likeArticle($request->ip(), $request->article_id);
     }
 }

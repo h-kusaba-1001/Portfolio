@@ -27,7 +27,7 @@ class ArticleController extends Controller
     public function index(Request $request): ArticleCollection
     {
         // peginateされたarticleを受け取る
-        $Articles = $this->articleService->getArticleListForFront($request);
+        $Articles = $this->articleService->getArticleListForFront($request->ip());
         return new ArticleCollection($Articles);
     }
 

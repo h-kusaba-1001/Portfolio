@@ -53,6 +53,38 @@ class LikeService
     }
 
     /**
+     * getIsEnableLikeForArticle
+     *
+     * @param  string $ip
+     * @param  int $articleId
+     * @return bool
+     */
+    public function getIsEnableLikeForArticle(string $ip, int $articleId): bool
+    {
+        $todayLikeNumFromIp = Like::whereNull('comment_id')
+            ->where('article_id', $articleId)
+            ->enableLike($ip)
+            ->count();
+
+        return $this->getIsEnableLike($todayLikeNumFromIp);
+    }
+
+    /**
+     * likeArticle
+     *
+     * @param  string $ip
+     * @param  int $articleId
+     * @return void
+     */
+    public function likeArticle(string $ip, int $articleId)
+    {
+        $like = new Like;
+        $like->ip_address = $ip;
+        $like->article_id = $articleId;
+        $like->save();
+    }
+
+    /**
      * getIsEnableLike
      *
      * @param  int $todayLikeNumFromIp
