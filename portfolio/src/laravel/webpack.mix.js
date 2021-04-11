@@ -13,6 +13,14 @@ require("laravel-mix-eslint");
  | file for the application as well as bundling up all the JS files.
  |
  */
+mix.webpackConfig({
+    resolve: {
+        alias: {
+            // eslint-disable-next-line no-undef
+            "@": __dirname + "/resources/js",
+        },
+    },
+});
 
 mix.js("resources/js/app.js", "public/js")
     .copy("resources/js/pages", "public/js/pages")
