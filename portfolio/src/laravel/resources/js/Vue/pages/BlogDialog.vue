@@ -25,7 +25,7 @@
           </v-toolbar-items> -->
                     </v-toolbar>
                     <v-list three-line subheader style="padding-top: 10px">
-                        <h1 class="px-3 font-weight-light display-1">
+                        <h1 class="px-3 font-weight-light text-h4">
                             {{ article.title }}
                         </h1>
                         <p class="text-right my-1 mr-5">
@@ -291,12 +291,12 @@ export default {
             default: null,
         },
     },
-    metaInfo() {
-        return {
-            title: this.article.title,
-            titleTemplate: "%s | " + process.env.VUE_APP_TITLE,
-        };
-    },
+    // metaInfo() {
+    //     return {
+    //         title: this.article.title,
+    //         titleTemplate: "%s | " + process.env.VUE_APP_TITLE,
+    //     };
+    // },
 };
 </script>
 

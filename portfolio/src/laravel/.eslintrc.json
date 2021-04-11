@@ -17,6 +17,10 @@
         "vue",
         "vuetify"
     ],
+    "globals": {
+        "require": false,
+        "axios": false
+    },
     "rules": {
         "vuetify/no-deprecated-classes": "error",
         "prettier/prettier": "error"

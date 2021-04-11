@@ -2,28 +2,28 @@
     <div>
         <!-- 使用技術 -->
         <v-card elevation="2" outlined class="mt-3 text-sm-left text-center">
-            <v-card-title class="headline font-weight-thin">
+            <v-card-title class="text-h5 font-weight-thin">
                 使用技術
             </v-card-title>
             <v-card-text>
-                <div class="subtitle-1">環境等</div>
-                <p class="body-1 text--primary">
+                <div class="text-subtitle-1">環境等</div>
+                <p class="text-body-1 text--primary">
                     ・docker(WSL2)<br />
                     ・heroku<br />
                     ・GitHub
                 </p>
-                <div class="subtitle-1">言語</div>
-                <p class="body-1 text--primary">
+                <div class="text-subtitle-1">言語</div>
+                <p class="text-body-1 text--primary">
                     ・PHP<br />
                     ・JavaScript
                 </p>
-                <div class="subtitle-1">フレームワーク</div>
-                <p class="body-1 text--primary">
+                <div class="text-subtitle-1">フレームワーク</div>
+                <p class="text-body-1 text--primary">
                     ・Laravel<br />
                     ・Vue.js
                 </p>
-                <div class="subtitle-1">ライブラリ</div>
-                <p class="body-1 text--primary">・Vuetify</p>
+                <div class="text-subtitle-1">ライブラリ</div>
+                <p class="text-body-1 text--primary">・Vuetify</p>
                 <!-- icons -->
                 <v-divider></v-divider>
                 <v-lazy

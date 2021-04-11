@@ -44,6 +44,7 @@ export default {
                     this.isEnableLike = response.data.isEnableLike;
                     this.likeNum = response.data.likeNum;
                 })
+                // eslint-disable-next-line no-unused-vars
                 .catch((error) => {
                     //
                 });
@@ -53,6 +54,7 @@ export default {
             this.gonnaLoading();
             await axios
                 .post("/api/like/portfolio")
+                // eslint-disable-next-line no-unused-vars
                 .then((response) => {
                     // 成功した場合は、いいね数を1カウントアップし、いいね不可の状態にする
                     this.likeNum++;

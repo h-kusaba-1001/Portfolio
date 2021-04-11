@@ -19,7 +19,7 @@
                         cols="12"
                     >
                         <div
-                            class="display-1 black--text text--darken-1 font-weight-medium mb-2 mt-sm-0 mt-4 text-h2 text-sm-h1"
+                            class="text-h4 black--text text--darken-1 font-weight-medium mb-2 mt-sm-0 mt-4 text-h2 text-sm-h1"
                             transition="slide-y-reverse-transition"
                         >
                             Develop for <br />
@@ -32,7 +32,7 @@
                             H.Kusaba's Portfolio
                         </div>
                         <div
-                            class="subtitle-1 subheading blue-grey--text text--lighten-4"
+                            class="text-subtitle-1 subheading blue-grey--text text--lighten-4"
                             transition="slide-y-reverse-transition"
                         >
                             Christopher Columbus said, <br />
@@ -45,12 +45,12 @@
         </v-lazy>
         <!-- このサイトについて -->
         <v-card elevation="2" outlined class="mt-3">
-            <v-card-title class="headline font-weight-thin">
+            <v-card-title class="text-h5 font-weight-thin">
                 このサイトについて
             </v-card-title>
             <v-card-text>
                 <div class="text--primary">
-                    このサイトは、WEBエンジニア、草場裕史（くさば　ひろふみ）のポートフォリオサイトとなっております。<br />
+                    このサイトは、WEBエンジニア、草場裕史（くさばひろふみ）のポートフォリオサイトとなっております。<br />
                     <br />
                     今までの業界経験や知識を生かして、技術の集大成としてこちらを製作しました。<br />
                     下記githubもぜひご覧ください。<br />

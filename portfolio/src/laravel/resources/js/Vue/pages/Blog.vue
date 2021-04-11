@@ -15,7 +15,7 @@
         <p>ブログ記事がありません。</p>
     </v-container>
     <v-container v-else>
-        <v-layout row wrap>
+        <v-layout wrap>
             <v-flex
                 xs12
                 sm6
@@ -105,9 +105,9 @@ export default {
     mounted() {
         this.getArticleList();
     },
-    metaInfo: {
-        title: "Home",
-        titleTemplate: "%s | " + process.env.VUE_APP_TITLE,
-    },
+    // metaInfo: {
+    //     title: "Home",
+    //     titleTemplate: "%s | " + process.env.VUE_APP_TITLE,
+    // },
 };
 </script>
