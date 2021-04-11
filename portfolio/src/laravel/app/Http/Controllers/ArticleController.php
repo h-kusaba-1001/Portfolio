@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ArticleCollection;
+use App\Http\Resources\ArticleResource;
 use App\Models\Article;
 use App\Service\ArticleService;
 use Illuminate\Http\Request;
-use Illuminate\Pagination\LengthAwarePaginator;
 
 class ArticleController extends Controller
 {
@@ -20,11 +21,14 @@ class ArticleController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return LengthAwarePaginator
+     * @param  Request $request
+     * @return ArticleResource
      */
-    public function index() : LengthAwarePaginator
+    public function index(Request $request): ArticleCollection
     {
-        return $this->articleService->getArticleListForFront();
+        // peginateされたarticleを受け取る
+        $Articles = $this->articleService->getArticleListForFront($request);
+        return new ArticleCollection($Articles);
     }
 
     /**
@@ -52,15 +56,18 @@ class ArticleController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return Article|Illuminate\Database\Eloquent\ModelNotFoundException
+     * @return ArticleResource
+     * @throws Illuminate\Database\Eloquent\ModelNotFoundException
      */
-    public function show($id)
+    public function show($id): ArticleResource
     {
-        return Article::with([
+        $Article = Article::with([
                 'articleComments' => function($query) {
                     return $query->permitted();
                 }
             ])->FindOrFail($id);
+
+        return new ArticleResource($Article);
     }
 
     /**

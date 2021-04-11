@@ -22,7 +22,7 @@
                 lg4
                 pa-2
                 v-for="article in articles"
-                :key="article._id"
+                :key="article.id"
             >
                 <blog-detail :article="article"></blog-detail>
             </v-flex>
@@ -72,7 +72,7 @@ export default {
             this.gonnaLoading();
             let response = await axios.get(url);
             this.articles = response.data.data;
-            this.links = response.data.links;
+            this.links = response.data.meta.links;
             this.loaded();
             // IDが入力されている場合は、該当のブログ記事を検索する
             if (this.$route.name === "blogDetail") {
@@ -84,7 +84,7 @@ export default {
             await axios
                 .get("/api/article/" + id)
                 .then((response) => {
-                    this.setActiveArticle(response.data);
+                    this.setActiveArticle(response.data.data);
                     this.setPostDialog(true);
                 })
                 .catch((error) => {
