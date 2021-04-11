@@ -1,6 +1,7 @@
-const mix = require('laravel-mix');
+const mix = require("laravel-mix");
 
-require('vuetifyjs-mix-extension')
+require("vuetifyjs-mix-extension");
+require("laravel-mix-eslint");
 
 /*
  |--------------------------------------------------------------------------
@@ -13,8 +14,16 @@ require('vuetifyjs-mix-extension')
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .copy('resources/js/pages', 'public/js/pages')
+mix.js("resources/js/app.js", "public/js")
+    .copy("resources/js/pages", "public/js/pages")
     .vue()
-    .sass('resources/sass/app.scss', 'public/css')
-    .vuetify('vuetify-loader');
+    .sass("resources/sass/app.scss", "public/css")
+    .vuetify("vuetify-loader")
+    .eslint({
+        fix: true,
+        extensions: ["js", "vue"],
+    });
+
+if (mix.inProduction()) {
+    mix.version();
+}
