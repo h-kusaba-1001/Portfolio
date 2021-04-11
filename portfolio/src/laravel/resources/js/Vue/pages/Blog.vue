@@ -1,5 +1,5 @@
 <template>
-    <v-container v-if="isLoading">
+    <v-container v-if="gettingArticleLoading">
         <v-row>
             <v-col v-for="i in 6" :key="i" cols="12" lg="4" sm="6" xs="12">
                 <v-skeleton-loader
@@ -58,6 +58,7 @@ export default {
         return {
             articles: [],
             links: [],
+            gettingArticleLoading: true,
         };
     },
     components: {},
@@ -68,12 +69,21 @@ export default {
             "setActiveArticle",
             "setPostDialog",
         ]),
+        // ポートフォリオ全体のローディングとは別に、ブログ取得ローディング用の関数を置く
+        gettingArticleLoad() {
+            this.gettingArticleLoading = true;
+        },
+        gettingArticleLoaded() {
+            this.gettingArticleLoading = false;
+        },
         async getArticleList(url = "/api/article") {
             this.gonnaLoading();
+            this.gettingArticleLoad();
             let response = await axios.get(url);
             this.articles = response.data.data;
             this.links = response.data.meta.links;
             this.loaded();
+            this.gettingArticleLoaded();
             // IDが入力されている場合は、該当のブログ記事を検索する
             if (this.$route.name === "blogDetail") {
                 this.getArticleDetail(this.$route.params.id);
@@ -81,6 +91,7 @@ export default {
         },
         async getArticleDetail(id) {
             this.gonnaLoading();
+            this.gettingArticleLoad();
             await axios
                 .get("/api/article/" + id)
                 .then((response) => {
@@ -95,19 +106,15 @@ export default {
                     this.$router.push({ name: "blog" });
                 });
             this.loaded();
+            this.gettingArticleLoaded();
         },
     },
     computed: {
         ...mapState(["isLoading"]),
         ...mapGetters(["getActiveArticle"]),
     },
-    created() {},
     mounted() {
         this.getArticleList();
     },
-    // metaInfo: {
-    //     title: "Home",
-    //     titleTemplate: "%s | " + process.env.VUE_APP_TITLE,
-    // },
 };
 </script>
