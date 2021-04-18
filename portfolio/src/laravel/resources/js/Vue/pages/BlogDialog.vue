@@ -249,6 +249,8 @@ export default {
                     .post("/api/comment/", param)
                     .then((response) => {
                         if (response.status === 200) {
+                            // コメントを初期化
+                            this.initComment();
                             // TODO alertではなくダイアログで表示する
                             let msg =
                                 "コメントが正しく投稿されました。\n" +
@@ -272,6 +274,14 @@ export default {
             } else {
                 return;
             }
+        },
+        initComment() {
+            // コメントの内容のみ初期化する
+            this.newComment = {
+                name: this.newComment.name,
+                email: this.newComment.email,
+                content: "",
+            };
         },
         // handleShare (post) {
         //   this.shareSheet = true
