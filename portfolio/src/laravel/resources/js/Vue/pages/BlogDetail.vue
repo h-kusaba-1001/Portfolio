@@ -26,6 +26,7 @@
                 </div>
             </v-card-title>
         </v-card>
+        <v-flex class="text-right">
         <like
             :likeNum="article.like_num"
             :todayLikeNumFromIp="article.today_like_num_from_ip"
@@ -34,7 +35,7 @@
                 article_id: article.id,
             }"
         ></like>
-        <v-row class="align-right"> </v-row>
+        </v-flex>
     </div>
 </template>
 

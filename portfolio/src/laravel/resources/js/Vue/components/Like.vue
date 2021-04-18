@@ -1,7 +1,7 @@
 <template>
     <div v-if="isEnableLike !== false" class="">
         <v-btn icon @click="like()">
-            <v-icon>mdi-heart-outline</v-icon>
+            <v-icon color="pink">mdi-heart-outline</v-icon>
             {{ dLikeNum }}
         </v-btn>
     </div>
@@ -9,7 +9,7 @@
         <v-tooltip bottom>
             <template v-slot:activator="{ on, attrs }">
                 <v-btn icon v-bind="attrs" v-on="on">
-                    <v-icon>mdi-heart</v-icon>
+                    <v-icon color="pink">mdi-heart</v-icon>
                     {{ dLikeNum }}
                 </v-btn>
             </template>
