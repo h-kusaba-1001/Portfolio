@@ -26,15 +26,19 @@
                 </div>
             </v-card-title>
         </v-card>
-        <v-flex class="text-right">
-        <like
-            :likeNum="article.like_num"
-            :todayLikeNumFromIp="article.today_like_num_from_ip"
-            apiUrl="/api/like/article"
-            :postParam="{
-                article_id: article.id,
-            }"
-        ></like>
+        <v-flex class="text-right mr-2">
+            <like
+                :likeNum="article.like_num"
+                :todayLikeNumFromIp="article.today_like_num_from_ip"
+                apiUrl="/api/like/article"
+                :postParam="{
+                    article_id: article.id,
+                }"
+                class="mr-4"
+            >
+            </like>
+            <v-icon>mdi-chat-processing-outline</v-icon
+            >{{ article.comment_num }}
         </v-flex>
     </div>
 </template>
