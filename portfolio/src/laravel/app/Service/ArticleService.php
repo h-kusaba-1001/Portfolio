@@ -16,7 +16,9 @@ class ArticleService
     public function getArticleQuery() : Builder
     {
         $article_query = Article::withCount([
-                'articleComments as comment_num',
+                'articleComments as comment_num' => function($query) {
+                    return $query->permitted();
+                },
                 'likes as like_num',
             ])
             ->latest();

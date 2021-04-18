@@ -15,7 +15,7 @@
                             <th scope="col">タイトル</th>
                             <th scope="col">本文</th>
                             <th scope="col">作成日時</th>
-                            <th scope="col">コメント数</th>
+                            <th scope="col">承認コメント数</th>
                             <th scope="col">いいね数</th>
                             <th scope="col"></th>
                             <th scope="col"></th>
