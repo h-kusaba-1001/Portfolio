@@ -13,18 +13,11 @@ window.Vue = require("vue").default;
 import vuetify from "./Vue/lib/vuetify";
 import router from "./Vue/lib/router";
 import vuex from "./Vue/lib/vuex";
+// axiosをロードし、axios.で使用可
+import axios from "./lib/axios";
 
 // blade.php向けに、別途vuetifyのコンポーネントを読み込んでおく
 import { VApp, VProgressLinear, VMain, VContainer } from "vuetify/lib";
-
-const axiosBase = require("axios");
-const axios = axiosBase.create({
-    headers: {
-        "Content-Type": "application/json",
-        "X-Requested-With": "XMLHttpRequest",
-    },
-    responseType: "json",
-});
 
 /**
  * The following block of code may be used to automatically register your
