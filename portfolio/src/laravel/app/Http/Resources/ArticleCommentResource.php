@@ -18,7 +18,8 @@ class ArticleCommentResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'email' => $this->email,
+            // emailは、フロントからデバッグで見れないように隠す
+            // 'email' => $this->email,
             'content' => $this->content,
             'permission_flg' => $this->permission_flg,
             'created_at' => $this->created_at,
