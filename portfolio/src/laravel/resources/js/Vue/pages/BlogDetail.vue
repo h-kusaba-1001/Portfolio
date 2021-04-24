@@ -79,7 +79,6 @@ export default {
             this.$store.commit("setPostDialog", true);
         },
     },
-    created() {},
 };
 </script>
 

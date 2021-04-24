@@ -5,7 +5,7 @@
     </v-btn>
     <v-tooltip bottom v-else>
         <template v-slot:activator="{ on, attrs }">
-            <v-btn icon v-bind="attrs" v-on="on">
+            <v-btn icon v-bind="attrs" v-on="on" class="mr-3">
                 <v-icon color="pink">mdi-heart</v-icon>
                 {{ dLikeNum }}
             </v-btn>
