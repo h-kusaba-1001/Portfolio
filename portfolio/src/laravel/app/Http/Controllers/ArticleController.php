@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\ArticleCollection;
 use App\Http\Resources\ArticleResource;
-use App\Models\Article;
 use App\Service\ArticleService;
 use Illuminate\Http\Request;
 
@@ -55,17 +54,14 @@ class ArticleController extends Controller
     /**
      * Display the specified resource.
      *
+     * @param  Request $request
      * @param  int  $id
      * @return ArticleResource
      * @throws Illuminate\Database\Eloquent\ModelNotFoundException
      */
-    public function show($id): ArticleResource
+    public function show(Request $request, int $id): ArticleResource
     {
-        $Article = Article::with([
-                'articleComments' => function($query) {
-                    return $query->permitted();
-                }
-            ])->FindOrFail($id);
+        $Article = $this->articleService->getArticleForFront($id, $request->ip());
 
         return new ArticleResource($Article);
     }

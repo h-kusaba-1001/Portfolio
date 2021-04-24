@@ -15,7 +15,7 @@ class ArticleService
      */
     public function getArticleQuery() : Builder
     {
-        $article_query = Article::withCount([
+        $articleQuery = Article::withCount([
                 'articleComments as comment_num' => function($query) {
                     return $query->permitted();
                 },
@@ -23,7 +23,7 @@ class ArticleService
             ])
             ->latest();
 
-        return $article_query;
+        return $articleQuery;
     }
 
     /**
@@ -33,8 +33,8 @@ class ArticleService
      */
     public function getArticleListForAdmin() : LengthAwarePaginator
     {
-        $article_query = $this->getArticleQuery();
-        return $article_query->paginate(config('project.const.per_page.admin'));
+        $articleQuery = $this->getArticleQuery();
+        return $articleQuery->paginate(config('project.const.per_page.admin'));
     }
 
     /**
@@ -45,8 +45,8 @@ class ArticleService
      */
     public function getArticleListForFront(string $ip) : LengthAwarePaginator
     {
-        $article_query = $this->getArticleQuery();
-        $article_query->with([
+        $articleQuery = $this->getArticleQuery();
+        $articleQuery->with([
                 'articleComments' => function($query) {
                     return $query->permitted();
                 }
@@ -57,6 +57,25 @@ class ArticleService
                 }
             ]);
 
-        return $article_query->paginate(config('project.const.per_page.front'));
+        return $articleQuery->paginate(config('project.const.per_page.front'));
+    }
+
+    /**
+     * getArticleForFront
+     *
+     * @param  int $id
+     * @param  string $ip
+     * @return Article
+     */
+    public function getArticleForFront(int $id, string $ip) : Article
+    {
+        $articleQuery = $this->getArticleQuery();
+        return $articleQuery
+            ->withCount([
+                'likes as today_like_num_from_ip' => function($query) use($ip) {
+                    return $query->enableLike($ip);
+                },
+            ])
+            ->FindOrFail($id);
     }
 }
