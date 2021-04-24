@@ -52,6 +52,8 @@
 
 <script>
 import { mapGetters, mapMutations, mapState } from "vuex";
+import BlogDetail from "@/Vue/pages/BlogDetail.vue";
+import BlogDialog from "@/Vue/pages/BlogDialog.vue";
 
 export default {
     data() {
@@ -61,7 +63,10 @@ export default {
             gettingArticleLoading: true,
         };
     },
-    components: {},
+    components: {
+        BlogDetail,
+        BlogDialog,
+    },
     methods: {
         ...mapMutations([
             "gonnaLoading",

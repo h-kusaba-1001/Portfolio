@@ -15,10 +15,6 @@ import router from "./Vue/lib/router";
 import vuex from "./Vue/lib/vuex";
 // axiosをロードし、axios.で使用可
 import axios from "./lib/axios";
-
-// blade.php向けに、別途vuetifyのコンポーネントを読み込んでおく
-import { VApp, VProgressLinear, VMain, VContainer } from "vuetify/lib";
-
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -51,6 +47,13 @@ Vue.filter("tailing", function (value, tail) {
     return value + tail;
 });
 
+// compornents
+// blade.php向けに、別途vuetifyのコンポーネントを読み込んでおく
+import { VApp, VProgressLinear, VMain, VContainer } from "vuetify/lib";
+
+import Navigation from "@/Vue/common/Navigation.vue";
+import VueFooter from "@/Vue/common/VueFooter.vue";
+
 const app = new Vue({
     el: "#app",
     vuetify: vuetify,
@@ -61,6 +64,8 @@ const app = new Vue({
         VProgressLinear,
         VMain,
         VContainer,
+        Navigation,
+        VueFooter,
     },
     data() {
         return {};
