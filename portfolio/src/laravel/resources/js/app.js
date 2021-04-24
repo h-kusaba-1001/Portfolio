@@ -12,7 +12,7 @@ window.Vue = require("vue").default;
 
 import vuetify from "./Vue/lib/vuetify";
 import router from "./Vue/lib/router";
-import vuexStore from "./Vue/lib/vuexStore";
+import vuex from "./Vue/lib/vuex";
 
 // blade.php向けに、別途vuetifyのコンポーネントを読み込んでおく
 import { VApp, VProgressLinear, VMain, VContainer } from "vuetify/lib";
@@ -64,7 +64,7 @@ const app = new Vue({
     el: "#app",
     vuetify: vuetify,
     router: router,
-    store: vuexStore,
+    store: vuex,
     components: {
         VApp,
         VProgressLinear,
