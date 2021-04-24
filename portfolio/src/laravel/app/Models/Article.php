@@ -32,7 +32,7 @@ class Article extends Model
 
     /**
      * getShortlyContentAttribute
-     * 本文の最初の12文字を整形して返すミュテター
+     * 本文の最初の12文字を整形して返すアクセサ
      *
      * @return string
      */
@@ -40,7 +40,7 @@ class Article extends Model
     {
         $length = 12;
         $shortContent = substr($this->content, 0, $length);
-        if(mb_strlen($this->content) > $length) {
+        if (mb_strlen($this->content) > $length) {
             $shortContent .= '...';
         }
         return $shortContent;

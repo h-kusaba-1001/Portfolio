@@ -28,6 +28,3 @@ Route::group(['prefix' => config('const.admin_url'), 'as' => 'admin.', 'namespac
         Route::delete('comment/bulk_delete', 'CommentController@bulkDelete')->name('comment.bulk_delete');
     });
 });
-
-
-

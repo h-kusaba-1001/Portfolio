@@ -34,9 +34,9 @@ class ArticleComment extends Model
     public function getPermissionStringAttribute() : string
     {
         $result = '';
-        if($this->permission_flg === config('project.const.flg.on')) {
+        if ($this->permission_flg === config('project.const.flg.on')) {
             $result = '承認';
-        } else if ($this->permission_flg === config('project.const.flg.off')) {
+        } elseif ($this->permission_flg === config('project.const.flg.off')) {
             $result = '未承認';
         }
         return $result;

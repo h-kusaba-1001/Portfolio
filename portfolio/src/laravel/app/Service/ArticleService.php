@@ -16,7 +16,7 @@ class ArticleService
     public function getArticleQuery() : Builder
     {
         $articleQuery = Article::withCount([
-                'articleComments as comment_num' => function($query) {
+                'articleComments as comment_num' => function ($query) {
                     return $query->permitted();
                 },
                 'likes as like_num',
@@ -47,12 +47,12 @@ class ArticleService
     {
         $articleQuery = $this->getArticleQuery();
         $articleQuery->with([
-                'articleComments' => function($query) {
+                'articleComments' => function ($query) {
                     return $query->permitted();
                 }
             ])
             ->withCount([
-                'likes as today_like_num_from_ip' => function($query) use($ip) {
+                'likes as today_like_num_from_ip' => function ($query) use ($ip) {
                     return $query->enableLike($ip);
                 }
             ]);
@@ -72,7 +72,7 @@ class ArticleService
         $articleQuery = $this->getArticleQuery();
         return $articleQuery
             ->withCount([
-                'likes as today_like_num_from_ip' => function($query) use($ip) {
+                'likes as today_like_num_from_ip' => function ($query) use ($ip) {
                     return $query->enableLike($ip);
                 },
             ])

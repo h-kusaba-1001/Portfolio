@@ -19,7 +19,7 @@ class ArticleCommentService
 
         // 未承認のみ表示フラグがあった場合
         // または、画面初期表示時に、、検索条件に未承認のみのコメントを追加
-        if ( (isset($req['only_not_permitted']) && $req['only_not_permitted'] == 1 )
+        if ((isset($req['only_not_permitted']) && $req['only_not_permitted'] == 1)
             || !isset($req['only_not_permitted'])
         ) {
             $articleCommentQuery->where('permission_flg', config('project.const.flg.off'));

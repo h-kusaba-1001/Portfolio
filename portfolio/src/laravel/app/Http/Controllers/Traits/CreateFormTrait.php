@@ -21,9 +21,9 @@ trait CreateFormTrait
         string $targetUrl,
         array $options = [],
         $httpMethod = null
-    ) : Form
-    {
-        $opt = array_merge([
+    ) : Form {
+        $opt = array_merge(
+            [
                 'method' => $httpMethod ?? 'POST',
                 'url' => $targetUrl,
             ],

@@ -21,4 +21,3 @@ Route::group(['as' => 'front.'], function () {
         Route::view('/{id}', 'front.index')->name('detail');
     });
 });
-

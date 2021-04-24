@@ -12,8 +12,12 @@ use Illuminate\Http\RedirectResponse;
 
 class ArticleController extends Controller
 {
-
-    private $articleService;
+    /**
+     * $articleService
+     *
+     * @var ArticleService
+     */
+    protected ArticleService $articleService;
 
     public function __construct(ArticleService $articleService)
     {
@@ -40,10 +44,10 @@ class ArticleController extends Controller
     public function create() : View
     {
         $form = $this->createForm(
-                ArticleForm::class,
-                route('admin.article.store'),
-                ['files' => true]
-            );
+            ArticleForm::class,
+            route('admin.article.store'),
+            ['files' => true]
+        );
         return view('admin.article.create', compact(['form']));
     }
 
@@ -56,10 +60,10 @@ class ArticleController extends Controller
     public function store(Request $request) : RedirectResponse
     {
         $form = $this->createForm(
-                ArticleForm::class,
-                route('admin.article.store'),
-                ['files' => true]
-            );
+            ArticleForm::class,
+            route('admin.article.store'),
+            ['files' => true]
+        );
         $form->redirectIfNotValid();
 
         $vals = $form->getFieldValues();
@@ -70,7 +74,7 @@ class ArticleController extends Controller
 
         $result = Article::create($vals);
 
-        if(!($result instanceof Article)) {
+        if (!($result instanceof Article)) {
             return $this->saveFailed(
                 'Article' . __('flush.store.failed'),
                 $request,
