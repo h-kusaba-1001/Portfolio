@@ -53,13 +53,11 @@ export default {
         ...mapMutations(["gonnaLoading", "loaded"]),
         async like() {
             this.gonnaLoading();
-            console.log(this.apiUrl, this.postParam);
             await axios
                 .post(this.apiUrl, this.postParam)
                 // eslint-disable-next-line no-unused-vars
                 .then((response) => {
                     // 成功した場合は、いいね数を1カウントアップし、IPからの当日のいいね数を+1としていいね不可の状態にする
-                    console.log("hoge");
                     this.dLikeNum++;
                     this.dTodayLikeNumFromIp++;
                 })

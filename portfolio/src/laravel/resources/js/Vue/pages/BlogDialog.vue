@@ -52,8 +52,8 @@
                     <!-- TODO タグボタン対応 -->
                     <!-- POST TAGS -->
                     <!-- <v-list v-if="article.metadata.post_tags" three-line subheader>
-          <v-subheader>Tags</v-subheader>
-        </v-list> -->
+                    <v-subheader>Tags</v-subheader>
+                    </v-list> -->
                     <!-- COMMENTS -->
                     <v-list three-line subheader>
                         <v-subheader
@@ -67,7 +67,7 @@
                             <v-list-item>
                                 <v-list-item-avatar>
                                     <v-icon color="primary" large
-                                        >mdi-account-circle-outline</v-icon
+                                        >mdi-account</v-icon
                                     >
                                 </v-list-item-avatar>
 
