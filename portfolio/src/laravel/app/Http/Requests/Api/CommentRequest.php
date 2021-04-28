@@ -32,6 +32,20 @@ class CommentRequest extends FormRequest
     }
 
     /**
+     * attributes
+     *
+     * @return void
+     */
+    public function attributes()
+    {
+        return [
+            'name' => 'お名前',
+            'email' => 'メールアドレス',
+            'content' => 'コメント',
+        ];
+    }
+
+    /**
      * 定義済みバリデーションルールのエラーメッセージ取得
      *
      * @return array
