@@ -26,6 +26,7 @@
                         </router-view>
                     </v-container>
                 </v-main>
+                <info-dialog></info-dialog>
                 <vue-footer></vue-footer>
             </v-app>
         </div>

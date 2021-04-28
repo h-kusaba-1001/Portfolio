@@ -73,6 +73,7 @@ export default {
             "loaded",
             "setActiveArticle",
             "setPostDialog",
+            "setErrorDialog",
         ]),
         // ポートフォリオ全体のローディングとは別に、ブログ取得ローディング用の関数を置く
         gettingArticleLoad() {
@@ -105,7 +106,10 @@ export default {
                 })
                 .catch((error) => {
                     if (error.response.status === 404) {
-                        alert("お探しの記事は見つかりませんでした。");
+                        this.setErrorDialog({
+                            title: "通信エラー",
+                            message: "お探しの記事は見つかりませんでした。",
+                        });
                     }
                     // ブログ一覧へ返す
                     this.$router.push({ name: "blog" });

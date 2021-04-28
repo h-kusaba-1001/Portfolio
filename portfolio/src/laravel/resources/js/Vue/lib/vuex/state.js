@@ -8,4 +8,10 @@ export default {
     postDialog: false,
     article: {},
     activeArticle: null,
+    infoDialog: {
+        showDialog: false,
+        title: "",
+        message: "",
+        color: "primary",
+    },
 };

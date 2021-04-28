@@ -54,6 +54,7 @@ import { VApp, VProgressLinear, VMain, VContainer } from "vuetify/lib";
 
 import Navigation from "@/Vue/common/Navigation.vue";
 import VueFooter from "@/Vue/common/VueFooter.vue";
+import InfoDialog from "@/Vue/common/InfoDialog.vue";
 
 const app = new Vue({
     el: "#app",
@@ -67,6 +68,7 @@ const app = new Vue({
         VContainer,
         Navigation,
         VueFooter,
+        InfoDialog,
     },
     data() {
         return {};

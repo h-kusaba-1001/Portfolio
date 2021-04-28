@@ -35,7 +35,11 @@ export default {
         };
     },
     methods: {
-        ...mapMutations(["gonnaLoading", "loaded"]),
+        ...mapMutations([
+            "gonnaLoading",
+            "loaded",
+            "setErrorDialogForValidation",
+        ]),
         async getLikeInfo() {
             this.gonnaLoading();
             await axios
@@ -61,15 +65,11 @@ export default {
                     this.isEnableLike = false;
                 })
                 .catch((error) => {
-                    // バリデーションメッセージが存在する場合、alert
+                    // バリデーションメッセージが存在する場合
                     if (error.response.data.errors) {
-                        let msg = "";
-                        Object.keys(error.response.data.errors).forEach(
-                            function (key) {
-                                msg += error.response.data.errors[key] + "\n";
-                            }
+                        this.setErrorDialogForValidation(
+                            error.response.data.errors
                         );
-                        alert(msg);
                     }
                 });
             this.loaded();

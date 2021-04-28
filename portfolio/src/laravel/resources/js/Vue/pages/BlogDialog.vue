@@ -225,6 +225,8 @@ export default {
             "loaded",
             "getArticle",
             "setActiveArticle",
+            "setInfoDialog",
+            "setErrorDialogForValidation",
         ]),
         validForm() {
             if (
@@ -244,31 +246,25 @@ export default {
                     email: this.newComment.email,
                     content: this.newComment.content,
                 };
-                //
                 await axios
                     .post("/api/comment/", param)
                     .then((response) => {
                         if (response.status === 200) {
                             // コメントを初期化
                             this.initComment();
-                            // TODO alertではなくダイアログで表示する
-                            let msg =
-                                "コメントが正しく投稿されました。\n" +
-                                "システム管理者の確認後、反映されます。";
-                            alert(msg);
+                            this.setInfoDialog({
+                                title: "コメントを投稿しました。",
+                                message:
+                                    "コメントが正しく投稿されました。\n システム管理者の確認後、反映されます。",
+                            });
                         }
                     })
                     .catch((error) => {
-                        // バリデーションメッセージが存在する場合、alert
+                        // バリデーションメッセージが存在する場合
                         if (error.response.data.errors) {
-                            let msg = "";
-                            Object.keys(error.response.data.errors).forEach(
-                                function (key) {
-                                    msg +=
-                                        error.response.data.errors[key] + "\n";
-                                }
+                            this.setErrorDialogForValidation(
+                                error.response.data.errors
                             );
-                            alert(msg);
                         }
                     });
             } else {

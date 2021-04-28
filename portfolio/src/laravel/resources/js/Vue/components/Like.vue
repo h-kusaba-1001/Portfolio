@@ -50,7 +50,11 @@ export default {
         },
     },
     methods: {
-        ...mapMutations(["gonnaLoading", "loaded"]),
+        ...mapMutations([
+            "gonnaLoading",
+            "loaded",
+            "setErrorDialogForValidation",
+        ]),
         async like() {
             this.gonnaLoading();
             await axios
@@ -62,15 +66,10 @@ export default {
                     this.dTodayLikeNumFromIp++;
                 })
                 .catch((error) => {
-                    // バリデーションメッセージが存在する場合、alert
                     if (error.response.data.errors) {
-                        let msg = "";
-                        Object.keys(error.response.data.errors).forEach(
-                            function (key) {
-                                msg += error.response.data.errors[key] + "\n";
-                            }
+                        this.setErrorDialogForValidation(
+                            error.response.data.errors
                         );
-                        alert(msg);
                     }
                 });
             this.loaded();
