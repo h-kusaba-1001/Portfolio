@@ -71,6 +71,11 @@ class ArticleService
     {
         $articleQuery = $this->getArticleQuery();
         return $articleQuery
+            ->with([
+                'articleComments' => function ($query) {
+                    return $query->permitted();
+                }
+            ])
             ->withCount([
                 'likes as today_like_num_from_ip' => function ($query) use ($ip) {
                     return $query->enableLike($ip);
