@@ -20,9 +20,6 @@
                 <div>
                     <p class="grey--text">{{ article.created_at | date }}</p>
                     <h2 class="text-h5">{{ article.title }}</h2>
-                    <p>
-                        {{ article.content | truncate(200) | tailing("...") }}
-                    </p>
                 </div>
             </v-card-title>
         </v-card>

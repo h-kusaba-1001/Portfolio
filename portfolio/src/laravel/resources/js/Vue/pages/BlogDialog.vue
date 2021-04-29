@@ -42,10 +42,10 @@
                                 ></v-img>
                             </v-responsive>
                         </v-layout>
-                        <v-list-item-content
-                            class="px-3"
-                            v-html="article.content"
-                        >
+                        <v-list-item-content class="px-3">
+                            <vue-markdown
+                                :source="article.content"
+                            ></vue-markdown>
                         </v-list-item-content>
                     </v-list>
                     <v-divider></v-divider>
@@ -180,8 +180,12 @@
 
 <script>
 import { mapMutations, mapState } from "vuex";
+import VueMarkdown from "vue-markdown";
 
 export default {
+    components: {
+        VueMarkdown,
+    },
     data: () => ({
         newComment: {
             name: "",
