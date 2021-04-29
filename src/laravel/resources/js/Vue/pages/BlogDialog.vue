@@ -16,7 +16,7 @@
                             class="toolbar-title"
                             @click.stop="handleCloseDialog()"
                         >
-                            H.K's Portfolio Blog
+                            H.Kusaba's Portfolio Blog
                         </v-toolbar-title>
                         <!-- <v-spacer></v-spacer> -->
                         <!-- TODO Shareボタン対応 -->

@@ -1,11 +1,13 @@
 <template>
     <div>
-        <v-app-bar class="blue-grey lighten-1">
+        <v-app-bar class="yellow darken-1">
             <v-app-bar-nav-icon
                 @click="displaySideBar = !displaySideBar"
             ></v-app-bar-nav-icon>
 
-            <v-toolbar-title>H.Kusaba's Portfolio</v-toolbar-title>
+            <v-toolbar-title class="white--text"
+                >H.Kusaba's Portfolio</v-toolbar-title
+            >
 
             <v-spacer></v-spacer>
             <navigation-heart></navigation-heart>
