@@ -20,8 +20,8 @@ services:
         build: ./docker-assets/php
         links:
             - mysql
-            - redis
-            - mailhog
+        # - redis
+            # - mailhog
         volumes:
             - ./src:/src
             - ./docker-assets/php/php.ini:/usr/local/etc/php/php.ini
@@ -47,43 +47,43 @@ services:
             MYSQL_PASSWORD: ${MYSQL_PASSWORD}
             TZ: 'Asia/Tokyo'
 
-    # adminer      
-    adminer:
-        container_name: ${PROJECT_NAME}_adminer
-        image: adminer
-        restart: always
-        links:
-            - mysql
-        ports:
-            - 6080:8080
-        environment:
-            ADMINER_DESIGN: 'pepa-linha'
-            ADMINER_DEFAULT_SERVER: mysql
+    # # adminer      
+    # adminer:
+    #     container_name: ${PROJECT_NAME}_adminer
+    #     image: adminer
+    #     restart: always
+    #     links:
+    #         - mysql
+    #     ports:
+    #         - 6080:8080
+    #     environment:
+    #         ADMINER_DESIGN: 'pepa-linha'
+    #         ADMINER_DEFAULT_SERVER: mysql
 
-    # redis
-    redis:
-        container_name: ${PROJECT_NAME}_redis
-        image: redis:alpine
+    # # redis
+    # redis:
+    #     container_name: ${PROJECT_NAME}_redis
+    #     image: redis:alpine
      
-    # redis commander 
-    redis-commander:
-        container_name: ${PROJECT_NAME}_redis_commander
-        hostname: redis-commander
-        image: rediscommander/redis-commander:latest
-        restart: always
-        links:
-            - redis
-        environment:
-            - REDIS_HOST=redis
-            - REDIS_PORT=6379
-        ports:
-            - 6081:8081
+    # # redis commander 
+    # redis-commander:
+    #     container_name: ${PROJECT_NAME}_redis_commander
+    #     hostname: redis-commander
+    #     image: rediscommander/redis-commander:latest
+    #     restart: always
+    #     links:
+    #         - redis
+    #     environment:
+    #         - REDIS_HOST=redis
+    #         - REDIS_PORT=6379
+    #     ports:
+    #         - 6081:8081
 
-    # mailhog       
-    mailhog:
-        container_name: ${PROJECT_NAME}_mailhog
-        image: mailhog/mailhog
-        ports: 
-            - 1025:1025
-            - 6082:8025
+    # # mailhog       
+    # mailhog:
+    #     container_name: ${PROJECT_NAME}_mailhog
+    #     image: mailhog/mailhog
+    #     ports: 
+    #         - 1025:1025
+    #         - 6082:8025
     
