@@ -19,7 +19,7 @@
                         cols="12"
                     >
                         <div
-                            class="text-h4 black--text text--darken-1 font-weight-medium mb-2 mt-sm-0 mt-4 text-h2 text-sm-h1"
+                            class="black--text text--darken-1 font-weight-medium mb-2 mt-sm-0 mt-4 text-h1"
                             transition="slide-y-reverse-transition"
                         >
                             Develop for <br />

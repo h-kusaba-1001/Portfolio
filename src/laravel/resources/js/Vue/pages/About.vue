@@ -74,6 +74,7 @@
             </v-card-title>
             <v-card-text class="text-body-1 text--primary">
                 ・SPA<br />
+                ・レスポンシブ対応 (スマホレイアウト対応)<br />
                 ・md形式のブログ<br />
                 ・承認機能付きのブログコメント<br />
                 ・IPアドレスでアクセスユーザを判別する、ログイン機能なしの1日1いいねの機能<br />
