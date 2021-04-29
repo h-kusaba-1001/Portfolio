@@ -212,7 +212,7 @@ export default {
         shareSheet: false,
     }),
     computed: {
-        ...mapState(["isLoading", "postDialog"]),
+        ...mapState(["isLoading"]),
         postDialog: {
             get() {
                 return this.$store.state.postDialog;
