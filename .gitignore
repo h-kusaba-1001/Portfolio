@@ -1,2 +1,2 @@
-portfolio/.env
-portfolio/database/*
+.env
+database/*
