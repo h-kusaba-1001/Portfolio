@@ -4,22 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Article;
-use App\Models\ArticleComment;
-
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Like extends Model
 {
     use HasFactory;
 
-    public function article():BelongsTo
+    public function article(): BelongsTo
     {
         return $this->belongsTo(Article::class);
     }
 
-    public function articleComment():BelongsTo
+    public function articleComment(): BelongsTo
     {
         return $this->belongsTo(ArticleComment::class);
     }
@@ -28,8 +25,8 @@ class Like extends Model
      * scopeEnableLike
      * 該当IPアドレスから当日のいいねがあるかを検索する
      *
-     * @param  \Illuminate\Database\Eloquent\Builder $query
-     * @param  string $ip
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param string $ip
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeEnableLike(Builder $query, string $ip): Builder

@@ -10,10 +10,10 @@ class ArticleCommentService
     /**
      * getCommentListForAdmin
      *
-     * @param  array $req
+     * @param array $req
      * @return LengthAwarePaginator
      */
-    public function getCommentListForAdmin($req) : LengthAwarePaginator
+    public function getCommentListForAdmin($req): LengthAwarePaginator
     {
         $articleCommentQuery = ArticleComment::latest();
 

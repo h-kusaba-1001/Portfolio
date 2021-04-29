@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Traits;
 
-use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Kris\LaravelFormBuilder\Form;
 
 trait SaveFailedTrait
@@ -11,12 +11,12 @@ trait SaveFailedTrait
     /**
      * saveFailed
      *
-     * @param  string $msg
-     * @param  Request $request
-     * @param  Form $form
+     * @param string $msg
+     * @param Request $request
+     * @param Form $form
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function saveFailed(string $msg, Request $request, Form $form) : RedirectResponse
+    public function saveFailed(string $msg, Request $request, Form $form): RedirectResponse
     {
         session()->flash('error', $msg);
         return redirect()->back()

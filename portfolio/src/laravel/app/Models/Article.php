@@ -2,11 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\ArticleComment;
-use App\Models\Like;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Article extends Model
 {
@@ -18,15 +16,15 @@ class Article extends Model
      * @var array
      */
     protected $guarded = [
-        'id'
+        'id',
     ];
 
-    public function articleComments():HasMany
+    public function articleComments(): HasMany
     {
         return $this->hasMany(ArticleComment::class);
     }
 
-    public function likes():HasMany
+    public function likes(): HasMany
     {
         return $this->hasMany(Like::class);
     }

@@ -19,8 +19,7 @@ class LikeController extends Controller
     /**
      * __construct
      *
-     * @param  LikeService $likeService
-     * @return void
+     * @param LikeService $likeService
      */
     public function __construct(LikeService $likeService)
     {
@@ -28,7 +27,7 @@ class LikeController extends Controller
     }
 
     /**
-     * @param  Request $request
+     * @param Request $request
      * @return array
      */
     public function getPortofolioLikesInfo(Request $request): array
@@ -40,8 +39,7 @@ class LikeController extends Controller
     /**
      * ポートフォリオのいいね機能
      *
-     * @param  PortfolioLikeRequest $request
-     * @return void
+     * @param PortfolioLikeRequest $request
      */
     public function likePortfolio(PortfolioLikeRequest $request)
     {
@@ -51,8 +49,7 @@ class LikeController extends Controller
     /**
      * ブログ記事のいいね機能
      *
-     * @param  ArticleLikeRequest $request
-     * @return void
+     * @param ArticleLikeRequest $request
      */
     public function likeArticle(ArticleLikeRequest $request)
     {

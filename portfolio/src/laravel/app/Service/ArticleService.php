@@ -13,7 +13,7 @@ class ArticleService
      *
      * @return Builder
      */
-    public function getArticleQuery() : Builder
+    public function getArticleQuery(): Builder
     {
         $articleQuery = Article::withCount([
                 'articleComments as comment_num' => function ($query) {
@@ -31,7 +31,7 @@ class ArticleService
      *
      * @return LengthAwarePaginator
      */
-    public function getArticleListForAdmin() : LengthAwarePaginator
+    public function getArticleListForAdmin(): LengthAwarePaginator
     {
         $articleQuery = $this->getArticleQuery();
         return $articleQuery->paginate(config('project.const.per_page.admin'));
@@ -40,21 +40,21 @@ class ArticleService
     /**
      * getArticleListForFront
      *
-     * @param  string $ip
+     * @param string $ip
      * @return LengthAwarePaginator
      */
-    public function getArticleListForFront(string $ip) : LengthAwarePaginator
+    public function getArticleListForFront(string $ip): LengthAwarePaginator
     {
         $articleQuery = $this->getArticleQuery();
         $articleQuery->with([
                 'articleComments' => function ($query) {
                     return $query->permitted();
-                }
+                },
             ])
             ->withCount([
                 'likes as today_like_num_from_ip' => function ($query) use ($ip) {
                     return $query->enableLike($ip);
-                }
+                },
             ]);
 
         return $articleQuery->paginate(config('project.const.per_page.front'));
@@ -63,18 +63,18 @@ class ArticleService
     /**
      * getArticleForFront
      *
-     * @param  int $id
-     * @param  string $ip
+     * @param int $id
+     * @param string $ip
      * @return Article
      */
-    public function getArticleForFront(int $id, string $ip) : Article
+    public function getArticleForFront(int $id, string $ip): Article
     {
         $articleQuery = $this->getArticleQuery();
         return $articleQuery
             ->with([
                 'articleComments' => function ($query) {
                     return $query->permitted();
-                }
+                },
             ])
             ->withCount([
                 'likes as today_like_num_from_ip' => function ($query) use ($ip) {

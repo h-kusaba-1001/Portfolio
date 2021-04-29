@@ -9,7 +9,7 @@ class LikeService
     /**
      * getPortofolioLikesInfo
      *
-     * @param  string $ip
+     * @param string $ip
      * @return array
      */
     public function getPortofolioLikesInfo(string $ip): array
@@ -26,7 +26,7 @@ class LikeService
     /**
      * getIsEnableLikeForPortfolio
      *
-     * @param  string $ip
+     * @param string $ip
      * @return bool
      */
     public function getIsEnableLikeForPortfolio(string $ip): bool
@@ -42,8 +42,7 @@ class LikeService
     /**
      * likePortfolio
      *
-     * @param  string $ip
-     * @return void
+     * @param string $ip
      */
     public function likePortfolio(string $ip)
     {
@@ -55,8 +54,8 @@ class LikeService
     /**
      * getIsEnableLikeForArticle
      *
-     * @param  string $ip
-     * @param  int $articleId
+     * @param string $ip
+     * @param int $articleId
      * @return bool
      */
     public function getIsEnableLikeForArticle(string $ip, int $articleId): bool
@@ -72,9 +71,8 @@ class LikeService
     /**
      * likeArticle
      *
-     * @param  string $ip
-     * @param  int $articleId
-     * @return void
+     * @param string $ip
+     * @param int $articleId
      */
     public function likeArticle(string $ip, int $articleId)
     {
@@ -87,7 +85,7 @@ class LikeService
     /**
      * getIsEnableLike
      *
-     * @param  int $todayLikeNumFromIp
+     * @param int $todayLikeNumFromIp
      * @return bool
      */
     private function getIsEnableLike(int $todayLikeNumFromIp): bool

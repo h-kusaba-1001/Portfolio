@@ -17,8 +17,7 @@ class ArticleLikeRequest extends FormRequest
     /**
      * __construct
      *
-     * @param  LikeService $likeService
-     * @return void
+     * @param LikeService $likeService
      */
     public function __construct(LikeService $likeService)
     {
@@ -30,7 +29,7 @@ class ArticleLikeRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize():bool
+    public function authorize(): bool
     {
         return true;
     }
@@ -40,7 +39,7 @@ class ArticleLikeRequest extends FormRequest
      *
      * @return array
      */
-    public function rules():array
+    public function rules(): array
     {
         return [
             'article_id' => ['required', 'integer', 'exists:articles,id'],
@@ -52,26 +51,25 @@ class ArticleLikeRequest extends FormRequest
      *
      * @return array
      */
-    public function messages():array
+    public function messages(): array
     {
         return [
-            'article_id.required'   => 'ブログIDが不正です',
-            'article_id.integer'    => 'ブログIDが不正です',
-            'article_id.exists'     => 'ブログIDが不正です',
+            'article_id.required' => 'ブログIDが不正です',
+            'article_id.integer' => 'ブログIDが不正です',
+            'article_id.exists' => 'ブログIDが不正です',
         ];
     }
 
     /**
      * バリデータインスタンスの設定
      *
-     * @param  \Illuminate\Validation\Validator  $validator
-     * @return void
+     * @param \Illuminate\Validation\Validator $validator
      */
     public function withValidator($validator)
     {
         $validator->after(function ($validator) {
             // ポートフォリオのいいね可能かどうかを確認するバリデーション
-            if (false === $this->likeService->getIsEnableLikeForArticle($this->ip(), $this->article_id)) {
+            if ($this->likeService->getIsEnableLikeForArticle($this->ip(), $this->article_id) === false) {
                 $validator->errors()->add('invalid_like', __('validation.custom.like.invalid_like'));
             }
         });

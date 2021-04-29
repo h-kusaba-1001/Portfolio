@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Service\ArticleService;
 use App\Forms\ArticleForm;
+use App\Http\Controllers\Controller;
 use App\Models\Article;
+use App\Service\ArticleService;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
-use Illuminate\Http\RedirectResponse;
 
 class ArticleController extends Controller
 {
@@ -29,7 +29,7 @@ class ArticleController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function index() : View
+    public function index(): View
     {
         $Articles = $this->articleService->getArticleListForAdmin();
 
@@ -41,7 +41,7 @@ class ArticleController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function create() : View
+    public function create(): View
     {
         $form = $this->createForm(
             ArticleForm::class,
@@ -54,10 +54,10 @@ class ArticleController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request) : RedirectResponse
+    public function store(Request $request): RedirectResponse
     {
         $form = $this->createForm(
             ArticleForm::class,
@@ -69,7 +69,7 @@ class ArticleController extends Controller
         $vals = $form->getFieldValues();
         // 画像ファイルパスの追加
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
-            $vals['image_filepath'] = url('storage/'.$request->image->store('article', 'public'));
+            $vals['image_filepath'] = url('storage/' . $request->image->store('article', 'public'));
         }
 
         $result = Article::create($vals);
@@ -93,7 +93,7 @@ class ArticleController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -104,10 +104,10 @@ class ArticleController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\View\View
      */
-    public function edit($id) : View
+    public function edit($id): View
     {
         $Article = Article::FindOrFail($id);
 
@@ -116,7 +116,7 @@ class ArticleController extends Controller
             route('admin.article.update', $Article->id),
             [
                 'files' => true,
-                'model' => $Article
+                'model' => $Article,
             ],
             'PUT'
         );
@@ -127,11 +127,11 @@ class ArticleController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $id) : RedirectResponse
+    public function update(Request $request, $id): RedirectResponse
     {
         $Article = Article::FindOrFail($id);
 
@@ -140,7 +140,7 @@ class ArticleController extends Controller
             route('admin.article.update', $Article->id),
             [
                 'files' => true,
-                'model' => $Article
+                'model' => $Article,
             ],
             'PUT'
         );
@@ -148,10 +148,11 @@ class ArticleController extends Controller
         $vals = $form->getFieldValues();
         // 画像ファイルパスの追加
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
-            $vals['image_filepath'] = url('storage/'.$request->image->store('article', 'public'));
+            $vals['image_filepath'] = url('storage/' . $request->image->store('article', 'public'));
         }
         $Article->fill($vals);
         $result = $Article->save();
+
         if (!$result) {
             return $this->saveFailed(
                 'Article' . __('flush.update.failed'),
@@ -171,10 +172,10 @@ class ArticleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param int $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy($id) : RedirectResponse
+    public function destroy($id): RedirectResponse
     {
         // destroyの返り値で削除件数を取得して判定
         if (Article::destroy($id) !== 1) {

@@ -11,7 +11,7 @@ class CommentRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize():bool
+    public function authorize(): bool
     {
         return true;
     }
@@ -21,7 +21,7 @@ class CommentRequest extends FormRequest
      *
      * @return array
      */
-    public function rules():array
+    public function rules(): array
     {
         return [
             'article_id' => ['required', 'exists:articles,id'],
@@ -33,10 +33,8 @@ class CommentRequest extends FormRequest
 
     /**
      * attributes
-     *
-     * @return void
      */
-    public function attributes():array
+    public function attributes(): array
     {
         return [
             'name' => 'お名前',
@@ -50,7 +48,7 @@ class CommentRequest extends FormRequest
      *
      * @return array
      */
-    public function messages():array
+    public function messages(): array
     {
         return [
             'article_id.required' => 'ブログIDが正しくありません。',

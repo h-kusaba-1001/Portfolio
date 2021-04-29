@@ -24,7 +24,7 @@ class ArticleController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param  Request $request
+     * @param Request $request
      * @return ArticleResource
      */
     public function index(Request $request): ArticleCollection
@@ -47,7 +47,7 @@ class ArticleController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
@@ -58,8 +58,8 @@ class ArticleController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  Request $request
-     * @param  int  $id
+     * @param Request $request
+     * @param int $id
      * @return ArticleResource
      * @throws Illuminate\Database\Eloquent\ModelNotFoundException
      */
@@ -73,7 +73,7 @@ class ArticleController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -84,8 +84,8 @@ class ArticleController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -96,7 +96,7 @@ class ArticleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param int $id
      * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($id)

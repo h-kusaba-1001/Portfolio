@@ -4,8 +4,8 @@ namespace Database\Factories;
 
 use App\Models\AdminUser;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class AdminUserFactory extends Factory
 {

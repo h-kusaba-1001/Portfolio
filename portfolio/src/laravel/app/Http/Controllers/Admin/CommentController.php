@@ -6,9 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Comment\BulkUpdatePermissionRequest;
 use App\Models\ArticleComment;
 use App\Service\ArticleCommentService;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\View\View;
 
 class CommentController extends Controller
@@ -29,9 +27,10 @@ class CommentController extends Controller
      * Display a listing of the resource.
      *
      * @param  \Illuminate\Http\Request
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request):View
+    public function index(Request $request): View
     {
         $req = $request->query();
         $Comments = $this->articleCommentService->getCommentListForAdmin($req)
@@ -53,7 +52,7 @@ class CommentController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -64,7 +63,7 @@ class CommentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -75,7 +74,7 @@ class CommentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -86,8 +85,8 @@ class CommentController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -98,7 +97,7 @@ class CommentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -109,10 +108,10 @@ class CommentController extends Controller
     /**
      * bulkUpdatePermission
      *
-     * @param  BulkUpdatePermissionRequest $request
+     * @param BulkUpdatePermissionRequest $request
      * @return int $resultNum
      */
-    public function bulkUpdatePermission(BulkUpdatePermissionRequest $request):int
+    public function bulkUpdatePermission(BulkUpdatePermissionRequest $request): int
     {
         $resultNum = ArticleComment::whereIn('id', $request->commentIds)
             ->update(['permission_flg' => config('project.const.flg.on')]);
@@ -127,10 +126,10 @@ class CommentController extends Controller
     /**
      * bulkUpdatePermission
      *
-     * @param  BulkUpdatePermissionRequest $request 実際にはbulkUpdateではないが、バリデーションメソッドを使いまわす
+     * @param BulkUpdatePermissionRequest $request 実際にはbulkUpdateではないが、バリデーションメソッドを使いまわす
      * @return int $resultNum
      */
-    public function bulkDelete(BulkUpdatePermissionRequest $request):int
+    public function bulkDelete(BulkUpdatePermissionRequest $request): int
     {
         $resultNum = ArticleComment::destroy($request->commentIds);
 

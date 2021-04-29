@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers\Traits;
 
-use Kris\LaravelFormBuilder\FormBuilder;
 use Kris\LaravelFormBuilder\Form;
+use Kris\LaravelFormBuilder\FormBuilder;
 
 trait CreateFormTrait
 {
     /**
      * createForm
      *
-     * @param  string $formClass
-     * @param  string $targetUrl
-     * @param  array|null $options
-     * @param  string|null $httpMethod
+     * @param string $formClass
+     * @param string $targetUrl
+     * @param array|null $options
+     * @param string|null $httpMethod
      * @return Form
      */
     public function createForm(
@@ -21,7 +21,7 @@ trait CreateFormTrait
         string $targetUrl,
         array $options = [],
         $httpMethod = null
-    ) : Form {
+    ): Form {
         $opt = array_merge(
             [
                 'method' => $httpMethod ?? 'POST',

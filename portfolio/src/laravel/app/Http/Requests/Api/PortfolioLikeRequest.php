@@ -17,8 +17,7 @@ class PortfolioLikeRequest extends FormRequest
     /**
      * __construct
      *
-     * @param  LikeService $likeService
-     * @return void
+     * @param LikeService $likeService
      */
     public function __construct(LikeService $likeService)
     {
@@ -30,7 +29,7 @@ class PortfolioLikeRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize():bool
+    public function authorize(): bool
     {
         return true;
     }
@@ -40,7 +39,7 @@ class PortfolioLikeRequest extends FormRequest
      *
      * @return array
      */
-    public function rules():array
+    public function rules(): array
     {
         return [
             //
@@ -50,14 +49,13 @@ class PortfolioLikeRequest extends FormRequest
     /**
      * バリデータインスタンスの設定
      *
-     * @param  \Illuminate\Validation\Validator  $validator
-     * @return void
+     * @param \Illuminate\Validation\Validator $validator
      */
     public function withValidator($validator)
     {
         $validator->after(function ($validator) {
             // ポートフォリオのいいね可能かどうかを確認するバリデーション
-            if (false === $this->likeService->getIsEnableLikeForPortfolio($this->ip())) {
+            if ($this->likeService->getIsEnableLikeForPortfolio($this->ip()) === false) {
                 $validator->errors()->add('invalid_like', __('validation.custom.like.invalid_like'));
             }
         });

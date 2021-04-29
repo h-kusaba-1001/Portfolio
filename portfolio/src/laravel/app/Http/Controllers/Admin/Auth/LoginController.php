@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Admin\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
-use Illuminate\Contracts\Auth\StatefulGuard;
 
 class LoginController extends Controller
 {
@@ -33,19 +33,7 @@ class LoginController extends Controller
     protected $decayMinutes = 360;
 
     /**
-     * redirectTo
-     *
-     * @return string
-     */
-    public function redirectTo():string
-    {
-        return '/'.config('const.admin_url');
-    }
-
-    /**
      * Create a new controller instance.
-     *
-     * @return void
      */
     public function __construct()
     {
@@ -53,20 +41,19 @@ class LoginController extends Controller
         $this->middleware('guest:admin_users')->except('logout');
     }
 
-    public function showAdminLoginForm():View
+    /**
+     * redirectTo
+     *
+     * @return string
+     */
+    public function redirectTo(): string
     {
-        return view('admin.auth.login', ['authgroup' => 'admin']);
+        return '/' . config('const.admin_url');
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    protected function validateLogin(Request $request)
+    public function showAdminLoginForm(): View
     {
-        $request->validate([
-            $this->username() => 'required|email',
-            'password' => 'required',
-        ]);
+        return view('admin.auth.login', ['authgroup' => 'admin']);
     }
 
     /**
@@ -88,7 +75,7 @@ class LoginController extends Controller
     /**
      * Log the user out of the application.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
      */
     public function logout(Request $request)
@@ -109,11 +96,22 @@ class LoginController extends Controller
     }
 
     /**
+     * {@inheritdoc}
+     */
+    protected function validateLogin(Request $request)
+    {
+        $request->validate([
+            $this->username() => 'required|email',
+            'password' => 'required',
+        ]);
+    }
+
+    /**
      * Get the guard to be used during authentication.
      *
      * @return \Illuminate\Contracts\Auth\StatefulGuard
      */
-    protected function guard():StatefulGuard
+    protected function guard(): StatefulGuard
     {
         return Auth::guard('admin_users');
     }
