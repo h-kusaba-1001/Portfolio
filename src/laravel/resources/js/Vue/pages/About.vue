@@ -53,6 +53,33 @@
                 </v-lazy>
             </v-card-text>
         </v-card>
+        <!-- 概要 -->
+        <v-card elevation="2" outlined class="mt-3 text-left">
+            <v-card-title class="text-h5 font-weight-thin"> 概要 </v-card-title>
+            <v-card-text class="text-body-1 text--primary">
+                私、草場裕史の技術的なポートフォリオになります。<br />
+                <br />
+                普通のポートフォリオサイトだと、あまりデータベースを使わないようですので、ブログ機能などでデータベースを使用する意味を持たせています。<br />
+                <br />
+                企画・要件定義からデザイン・実装まで、一気通貫で私が行いました。<br />
+                いいね機能などの、口頭でお伝えしにくい遊び心もお伝えできればいいなと思います。<br />
+            </v-card-text>
+        </v-card>
+        <!-- 見どころ -->
+        <v-card elevation="2" outlined class="mt-3 text-left">
+            <v-card-title class="text-h5 font-weight-thin">
+                見どころ
+            </v-card-title>
+            <v-card-text class="text-body-1 text--primary">
+                ・SPA<br />
+                ・md形式のブログ<br />
+                ・承認機能付きのブログコメント<br />
+                ・IPアドレスでアクセスユーザを判別する、ログイン機能なしの1日1いいねの機能<br />
+                ・デザイン<br />
+                ・他のプロダクトへの再利用を前提とした、可読性・保守性を踏まえたコーディング<br />
+                ・Laravelの機能をフルに活用
+            </v-card-text>
+        </v-card>
     </div>
 </template>
 

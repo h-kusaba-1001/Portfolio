@@ -22,7 +22,7 @@
                     </router-link>
                     <router-link to="/about">
                         <v-list-item>
-                            <v-list-item-title>ABOUT</v-list-item-title>
+                            <v-list-item-title>ABOUT THIS</v-list-item-title>
                         </v-list-item>
                     </router-link>
                     <router-link to="/blog">
