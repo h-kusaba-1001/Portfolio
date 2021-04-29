@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Admin\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
+use Illuminate\Contracts\Auth\StatefulGuard;
 
 class LoginController extends Controller
 {
@@ -36,7 +37,7 @@ class LoginController extends Controller
      *
      * @return string
      */
-    public function redirectTo()
+    public function redirectTo():string
     {
         return '/'.config('const.admin_url');
     }
@@ -52,7 +53,7 @@ class LoginController extends Controller
         $this->middleware('guest:admin_users')->except('logout');
     }
 
-    public function showAdminLoginForm()
+    public function showAdminLoginForm():View
     {
         return view('admin.auth.login', ['authgroup' => 'admin']);
     }
@@ -112,7 +113,7 @@ class LoginController extends Controller
      *
      * @return \Illuminate\Contracts\Auth\StatefulGuard
      */
-    protected function guard()
+    protected function guard():StatefulGuard
     {
         return Auth::guard('admin_users');
     }

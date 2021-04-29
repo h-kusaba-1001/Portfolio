@@ -9,6 +9,7 @@ use App\Service\ArticleCommentService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\View\View;
 
 class CommentController extends Controller
 {
@@ -30,7 +31,7 @@ class CommentController extends Controller
      * @param  \Illuminate\Http\Request
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $request):View
     {
         $req = $request->query();
         $Comments = $this->articleCommentService->getCommentListForAdmin($req)
@@ -91,7 +92,7 @@ class CommentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->all();
+        //
     }
 
     /**
@@ -111,7 +112,7 @@ class CommentController extends Controller
      * @param  BulkUpdatePermissionRequest $request
      * @return int $resultNum
      */
-    public function bulkUpdatePermission(BulkUpdatePermissionRequest $request)
+    public function bulkUpdatePermission(BulkUpdatePermissionRequest $request):int
     {
         $resultNum = ArticleComment::whereIn('id', $request->commentIds)
             ->update(['permission_flg' => config('project.const.flg.on')]);
@@ -129,7 +130,7 @@ class CommentController extends Controller
      * @param  BulkUpdatePermissionRequest $request 実際にはbulkUpdateではないが、バリデーションメソッドを使いまわす
      * @return int $resultNum
      */
-    public function bulkDelete(BulkUpdatePermissionRequest $request)
+    public function bulkDelete(BulkUpdatePermissionRequest $request):int
     {
         $resultNum = ArticleComment::destroy($request->commentIds);
 
