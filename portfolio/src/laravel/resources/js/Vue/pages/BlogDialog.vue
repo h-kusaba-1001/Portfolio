@@ -31,15 +31,14 @@
                         <p class="text-right my-1 mr-5">
                             {{ article.created_at | date }}
                         </p>
-                        <v-layout justify-center py-2 class="text-center">
+                        <v-layout
+                            justify-center
+                            py-2
+                            class="text-center"
+                            v-if="article.image_filepath !== null"
+                        >
                             <v-responsive max-width="600px">
-                                <v-img
-                                    :src="
-                                        article.image_filepath
-                                            ? article.image_filepath
-                                            : '/img/front/noimage.jpg'
-                                    "
-                                ></v-img>
+                                <v-img :src="article.image_filepath"></v-img>
                             </v-responsive>
                         </v-layout>
                         <v-list-item-content class="px-3">
