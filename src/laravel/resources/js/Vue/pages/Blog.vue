@@ -5,7 +5,7 @@
                 <v-skeleton-loader
                     v-for="n in 1"
                     :key="n"
-                    type="image, article, button"
+                    type="image, article, actions"
                     class="mb-6"
                 ></v-skeleton-loader>
             </v-col>
