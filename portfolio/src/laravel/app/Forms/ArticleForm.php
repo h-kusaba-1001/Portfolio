@@ -8,6 +8,11 @@ use Kris\LaravelFormBuilder\Field;
 
 class ArticleForm extends Form
 {
+    /**
+     * buildForm
+     *
+     * @return void
+     */
     public function buildForm()
     {
         $this

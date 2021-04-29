@@ -9,6 +9,11 @@ use Illuminate\Http\Request;
 
 class ArticleController extends Controller
 {
+    /**
+     * articleService
+     *
+     * @var ArticleService
+     */
     private $articleService;
 
     public function __construct(ArticleService $articleService)

@@ -30,7 +30,7 @@ class ArticleLikeRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize():bool
     {
         return true;
     }
@@ -40,7 +40,7 @@ class ArticleLikeRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules():array
     {
         return [
             'article_id' => ['required', 'integer', 'exists:articles,id'],
@@ -52,7 +52,7 @@ class ArticleLikeRequest extends FormRequest
      *
      * @return array
      */
-    public function messages()
+    public function messages():array
     {
         return [
             'article_id.required'   => 'ブログIDが不正です',

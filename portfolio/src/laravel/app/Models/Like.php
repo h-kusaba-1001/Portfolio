@@ -4,20 +4,22 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Article;
 use App\Models\ArticleComment;
+
 
 class Like extends Model
 {
     use HasFactory;
 
-    public function article()
+    public function article():BelongsTo
     {
         return $this->belongsTo(Article::class);
     }
 
-    public function articleComment()
+    public function articleComment():BelongsTo
     {
         return $this->belongsTo(ArticleComment::class);
     }

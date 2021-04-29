@@ -22,7 +22,7 @@ class BulkUpdatePermissionRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules():array
     {
         $commentIds = ArticleComment::All()->pluck('id')->toArray();
         return [
