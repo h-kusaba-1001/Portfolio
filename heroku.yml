@@ -10,7 +10,7 @@ build:
     LOG_LEVEL: debug
 release:
   command:
-    - ./heroku_release.sh
+    - heroku_release.sh
   image: web
 run:
   web: vendor/bin/heroku-php-apache2 src/laravel/public/
