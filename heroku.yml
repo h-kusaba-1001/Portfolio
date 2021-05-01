@@ -1,7 +1,6 @@
 build:
   docker:
-    web: Dockerfile
-    worker: docker-assets/php
+    web: docker-assets/php/Dockerfile
   config:
     APP_NAME: H.Kusabas_Portofolio
     APP_ENV: prod
