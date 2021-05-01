@@ -190,6 +190,13 @@ import { mapMutations, mapState } from "vuex";
 import VueMarkdown from "vue-markdown";
 
 export default {
+    props: {
+        article: {
+            type: Object,
+            required: true,
+            default: null,
+        },
+    },
     components: {
         VueMarkdown,
     },
@@ -302,13 +309,6 @@ export default {
             this.postDialog = false;
             this.$router.go(-1);
             this.$store.commit("setActiveArticle", null);
-        },
-    },
-    props: {
-        article: {
-            type: Object,
-            required: true,
-            default: null,
         },
     },
     // metaInfo() {
