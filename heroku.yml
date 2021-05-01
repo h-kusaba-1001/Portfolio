@@ -11,4 +11,6 @@ build:
 release:
   command:
     - ./heroku_release.sh
-  image: worker
+  image: web
+run:
+  web: vendor/bin/heroku-php-apache2 src/laravel/public/
