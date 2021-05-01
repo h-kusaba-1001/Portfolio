@@ -1,0 +1,15 @@
+build:
+  docker:
+    web: docker-assets/php/Dockerfile
+    worker: src/laravel
+  config:
+    APP_NAME: H.Kusabas_Portofolio
+    APP_ENV: prod
+    APP_DEBUG: false
+    APP_URL: https://h-kusaba-portfolio.herokuapp.com
+    LOG_CHANNEL: stack
+    LOG_LEVEL: debug
+release:
+  command:
+    - ./heroku_release.sh
+  image: worker
