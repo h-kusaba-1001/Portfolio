@@ -30,7 +30,8 @@ mix.js("resources/js/app.js", "public/js")
     .eslint({
         fix: true,
         extensions: ["js", "vue"],
-    });
+    })
+    .postCss("resources/css/app.css", "public/css");
 
 if (mix.inProduction()) {
     mix.version();
