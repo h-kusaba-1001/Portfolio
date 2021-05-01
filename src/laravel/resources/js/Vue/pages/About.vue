@@ -22,7 +22,7 @@
                     ・Laravel<br />
                     ・Vue.js
                 </p>
-                <div class="text-subtitle-1">ライブラリ</div>
+                <div class="text-subtitle-1">主要ライブラリ</div>
                 <p class="text-body-1 text--primary">・Vuetify</p>
                 <!-- icons -->
                 <v-divider></v-divider>
@@ -67,10 +67,10 @@
                 製作時間を厳密に計っていませんが、要件定義・環境構築を含めると、80~160時間の間くらいかと思います。(120時間程度?)
             </v-card-text>
         </v-card>
-        <!-- 見どころ -->
+        <!-- おもな見どころ -->
         <v-card elevation="2" outlined class="mt-3 text-left">
             <v-card-title class="text-h5 font-weight-thin">
-                見どころ
+                おもな見どころ
             </v-card-title>
             <v-card-text class="text-body-1 text--primary">
                 ・SPA<br />
