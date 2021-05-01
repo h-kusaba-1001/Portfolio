@@ -38,8 +38,5 @@ RUN composer global require laravel/installer
 
 ENV PATH="/root/.composer/vendor/bin:${PATH}"
 
-RUN composer global require phpunit/phpunit
-
-RUN apk add --update nodejs 
-RUN apk add --update npm 
-RUN apk add yarn
+RUN apk add --update nodejs=6.14.6
+RUN apk add --update npm=6.14.6
