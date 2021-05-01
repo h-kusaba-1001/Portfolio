@@ -18,7 +18,7 @@
             <v-app>
                 <navigation></navigation>
                 <v-progress-linear
-                    v-if="$store.state.isLoading"
+                    v-if="isLoading"
                     indeterminate
                     color="blue darken-2"
                 ></v-progress-linear>

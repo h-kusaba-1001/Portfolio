@@ -56,6 +56,8 @@ import Navigation from "@/Vue/common/Navigation.vue";
 import VueFooter from "@/Vue/common/VueFooter.vue";
 import InfoDialog from "@/Vue/common/InfoDialog.vue";
 
+import { mapMutations, mapState } from "vuex";
+
 const app = new Vue({
     el: "#app",
     vuetify: vuetify,
@@ -74,9 +76,15 @@ const app = new Vue({
         return {};
     },
     created() {
-        this.$store.commit("gonnaLoading");
+        this.gonnaLoading();
     },
     beforeMount() {
-        this.$store.commit("loaded");
+        this.loaded();
+    },
+    methods: {
+        ...mapMutations(["gonnaLoading", "loaded"]),
+    },
+    computed: {
+        ...mapState(["isLoading"]),
     },
 });
