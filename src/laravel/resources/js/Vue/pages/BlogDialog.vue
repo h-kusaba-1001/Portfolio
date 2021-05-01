@@ -82,6 +82,11 @@
                             </v-list-item>
                         </template>
                     </v-list>
+                    <v-progress-linear
+                        v-if="commentPosting"
+                        indeterminate
+                        color="blue darken-2"
+                    ></v-progress-linear>
                     <v-list class="py-3">
                         <v-subheader
                             >コメント欄 <br />
@@ -134,7 +139,9 @@
                                             depressed
                                             class="white--text"
                                             color="green lighten-1"
-                                            :disabled="!validComment"
+                                            :disabled="
+                                                !validComment || commentPosting
+                                            "
                                             >Post Comment</v-btn
                                         >
                                     </v-flex>
@@ -211,6 +218,7 @@ export default {
         validComment: false,
         dialog: false,
         shareSheet: false,
+        commentPosting: false,
     }),
     computed: {
         ...mapState(["isLoading"]),
@@ -244,6 +252,7 @@ export default {
         },
         async postComment() {
             if (this.$refs.commentForm.validate()) {
+                this.commentPosting = true;
                 let param = {
                     article_id: this.article.id,
                     name: this.newComment.name,
@@ -271,6 +280,7 @@ export default {
                             );
                         }
                     });
+                this.commentPosting = false;
             } else {
                 return;
             }
