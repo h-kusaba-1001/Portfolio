@@ -3,7 +3,9 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        {{-- <title>Laravel</title> --}}
+        <!-- 会社に見つかると面倒なので、とりあえずnoindexを配置 -->
+        <meta name="robots" content="noindex">
+        <title>{{ config('app.name') }}</title>
         <style>
         </style>
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
@@ -16,7 +18,7 @@
             <v-app>
                 <navigation></navigation>
                 <v-progress-linear
-                    v-if="$store.state.isLoading"
+                    v-if="isLoading"
                     indeterminate
                     color="blue darken-2"
                 ></v-progress-linear>

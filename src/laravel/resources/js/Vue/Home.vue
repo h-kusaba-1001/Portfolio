@@ -19,7 +19,7 @@
                         cols="12"
                     >
                         <div
-                            class="text-h4 black--text text--darken-1 font-weight-medium mb-2 mt-sm-0 mt-4 text-h2 text-sm-h1"
+                            class="black--text text--darken-1 font-weight-medium mb-2 mt-sm-0 mt-4 text-h1"
                             transition="slide-y-reverse-transition"
                         >
                             Develop for <br />
@@ -51,6 +51,7 @@
             <v-card-text>
                 <div class="text--primary">
                     このサイトは、WEBエンジニア、草場裕史（くさばひろふみ）のポートフォリオサイトとなっております。<br />
+                    ぜひ、「左上のハンバーガーメニュー」から、このサイトを隅々までご覧ください。<br />
                     <br />
                     今までの業界経験や知識を生かして、技術の集大成としてこちらを製作しました。<br />
                     下記githubもぜひご覧ください。<br />

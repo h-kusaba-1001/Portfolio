@@ -47,7 +47,7 @@
                         <div class="text-h6">草場 裕史</div>
                     </div>
                     <div
-                        class="mt-1 px-md-16 mx-md-auto justify-center text-left col-md-6"
+                        class="mt-1 px-md-16 mx-md-auto justify-center text-left col-md-8"
                     >
                         93年生まれのWEBエンジニア。<br />
                         長崎県佐世保市出身、大阪市在住。大学で関西に来て、はや8年。<br />
@@ -55,8 +55,12 @@
                         業界に入って半年で基本情報技術者、2年で応用情報を取得。<br />
                         <br />
                         普段は、PHPをメインに、業務系やECのWEB開発をしています。<br />
-                        趣味はゲームで、最近面白かったゲームは「Among
-                        Us」です。<br />
+                        メインはサーバサイドを担当していますが、フロントエンドの作業も多いです。<br />
+                        GCPなどの、クラウド系のインフラを触ることもまれにあります。<br />
+                        <br />
+                        趣味はゲームで、最近面白かったゲームは「Apex
+                        Legends」「Among Us」です。<br />
+                        最近は、仕事関係の本を読んだり、コードを書いたりする機会も増えています。
                     </div>
                 </v-card-text>
 

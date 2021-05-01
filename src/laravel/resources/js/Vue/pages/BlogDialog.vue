@@ -16,7 +16,7 @@
                             class="toolbar-title"
                             @click.stop="handleCloseDialog()"
                         >
-                            H.K's Portfolio Blog
+                            H.Kusaba's Portfolio Blog
                         </v-toolbar-title>
                         <!-- <v-spacer></v-spacer> -->
                         <!-- TODO Shareボタン対応 -->
@@ -25,7 +25,7 @@
           </v-toolbar-items> -->
                     </v-toolbar>
                     <v-list three-line subheader style="padding-top: 10px">
-                        <h1 class="px-3 font-weight-light text-h4">
+                        <h1 class="px-3 font-weight-light text-h5">
                             {{ article.title }}
                         </h1>
                         <p class="text-right my-1 mr-5">
@@ -43,6 +43,7 @@
                         </v-layout>
                         <v-list-item-content class="px-3">
                             <vue-markdown
+                                class="text--primary markdown-text"
                                 :source="article.content"
                             ></vue-markdown>
                         </v-list-item-content>
@@ -81,11 +82,16 @@
                             </v-list-item>
                         </template>
                     </v-list>
+                    <v-progress-linear
+                        v-if="commentPosting"
+                        indeterminate
+                        color="blue darken-2"
+                    ></v-progress-linear>
                     <v-list class="py-3">
                         <v-subheader
-                            >コメント欄
-                            ※投稿されたコメントは、管理者の承認後に閲覧可能となります</v-subheader
-                        >
+                            >コメント欄 <br />
+                            ※投稿されたコメントは、管理者の承認後に閲覧可能となります
+                        </v-subheader>
                     </v-list>
                     <v-form
                         ref="commentForm"
@@ -133,7 +139,9 @@
                                             depressed
                                             class="white--text"
                                             color="green lighten-1"
-                                            :disabled="!validComment"
+                                            :disabled="
+                                                !validComment || commentPosting
+                                            "
                                             >Post Comment</v-btn
                                         >
                                     </v-flex>
@@ -182,6 +190,13 @@ import { mapMutations, mapState } from "vuex";
 import VueMarkdown from "vue-markdown";
 
 export default {
+    props: {
+        article: {
+            type: Object,
+            required: true,
+            default: null,
+        },
+    },
     components: {
         VueMarkdown,
     },
@@ -210,6 +225,7 @@ export default {
         validComment: false,
         dialog: false,
         shareSheet: false,
+        commentPosting: false,
     }),
     computed: {
         ...mapState(["isLoading"]),
@@ -243,6 +259,7 @@ export default {
         },
         async postComment() {
             if (this.$refs.commentForm.validate()) {
+                this.commentPosting = true;
                 let param = {
                     article_id: this.article.id,
                     name: this.newComment.name,
@@ -270,6 +287,7 @@ export default {
                             );
                         }
                     });
+                this.commentPosting = false;
             } else {
                 return;
             }
@@ -291,13 +309,6 @@ export default {
             this.postDialog = false;
             this.$router.go(-1);
             this.$store.commit("setActiveArticle", null);
-        },
-    },
-    props: {
-        article: {
-            type: Object,
-            required: true,
-            default: null,
         },
     },
     // metaInfo() {
