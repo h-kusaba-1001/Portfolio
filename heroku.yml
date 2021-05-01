@@ -9,8 +9,8 @@ build:
     LOG_CHANNEL: stack
     LOG_LEVEL: debug
 release:
-  command:
-    - heroku_release.sh
   image: web
+  command:
+    - ./heroku_release.sh
 run:
   web: vendor/bin/heroku-php-apache2 src/laravel/public/
