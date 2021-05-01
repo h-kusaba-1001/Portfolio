@@ -1,7 +1,7 @@
 build:
   docker:
-    web: Dockerfile
-    worker: ../../src/laravel
+    web: ./docker-assets/php/Dockerfile
+    worker: ./src/laravel
   config:
     APP_NAME: H.Kusabas_Portofolio
     APP_ENV: prod
