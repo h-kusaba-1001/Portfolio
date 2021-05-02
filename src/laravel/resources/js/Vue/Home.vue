@@ -22,7 +22,7 @@
                             class="black--text text--darken-1 font-weight-medium mb-2 mt-sm-0 mt-4 text-h1"
                             transition="slide-y-reverse-transition"
                         >
-                            Develop for <br />
+                            Develop for<br />
                             the Future.
                         </div>
                         <div
@@ -32,7 +32,7 @@
                             H.Kusaba's Portfolio
                         </div>
                         <div
-                            class="text-subtitle-1 subheading blue-grey--text text--lighten-4"
+                            class="text-subtitle-2 subheading blue-grey--text text--lighten-4 text-sm-subtitle-1"
                             transition="slide-y-reverse-transition"
                         >
                             Christopher Columbus said, <br />
