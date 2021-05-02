@@ -40,7 +40,7 @@
                     <div class="">
                         <v-avatar size="80" class="">
                             <img
-                                src="/img/front/common/Footer/me.jpg"
+                                src="/img/front/common/Footer/me.svg"
                                 alt="Author is Kusaba"
                             />
                         </v-avatar>
