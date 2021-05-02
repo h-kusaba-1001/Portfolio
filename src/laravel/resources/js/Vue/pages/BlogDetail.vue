@@ -34,7 +34,7 @@
                 class="mr-4"
             >
             </like>
-            <v-icon>mdi-chat-processing-outline</v-icon
+            <v-icon>{{ mdiChatProcessingOutline }}</v-icon
             >{{ article.comment_num }}
         </v-flex>
     </div>
@@ -42,6 +42,7 @@
 
 <script>
 import { mapMutations } from "vuex";
+import { mdiChatProcessingOutline } from "@mdi/js";
 import Like from "@/Vue/components/Like.vue";
 
 export default {
@@ -53,7 +54,9 @@ export default {
     },
     components: { Like },
     data() {
-        return {};
+        return {
+            mdiChatProcessingOutline,
+        };
     },
     computed: {
         ...mapMutations(["getSettings"]),

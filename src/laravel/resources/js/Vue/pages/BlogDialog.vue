@@ -10,7 +10,7 @@
                 <v-card v-if="!isLoading">
                     <v-toolbar fixed dark color="yellow darken-1">
                         <v-btn icon dark @click.stop="handleCloseDialog()">
-                            <v-icon>mdi-close</v-icon>
+                            <v-icon>{{ mdiClose }}</v-icon>
                         </v-btn>
                         <v-toolbar-title
                             class="toolbar-title"
@@ -66,9 +66,9 @@
                             <v-divider class="my-1" :key="i" inset></v-divider>
                             <v-list-item>
                                 <v-list-item-avatar>
-                                    <v-icon color="primary" large
-                                        >mdi-account</v-icon
-                                    >
+                                    <v-icon color="primary" large>{{
+                                        mdiAccount
+                                    }}</v-icon>
                                 </v-list-item-avatar>
 
                                 <v-list-item-content>
@@ -104,7 +104,7 @@
                                 <v-flex xs12 md6>
                                     <v-text-field
                                         filled
-                                        prepend-icon="mdi-account"
+                                        :prepend-icon="mdiAccount"
                                         v-model="newComment.name"
                                         :rules="nameRules"
                                         :counter="25"
@@ -115,7 +115,7 @@
                                 <v-flex xs12 md6>
                                     <v-text-field
                                         filled
-                                        prepend-icon="mdi-at"
+                                        :prepend-icon="mdiAt"
                                         v-model="newComment.email"
                                         :rules="emailRules"
                                         label="メールアドレス (任意) ※メールアドレスは公開されません"
@@ -125,7 +125,7 @@
                                 <v-flex xs12>
                                     <v-text-field
                                         filled
-                                        prepend-icon="mdi-comment-text"
+                                        :prepend-icon="mdiCommentText"
                                         v-model="newComment.content"
                                         :rules="commentRules"
                                         label="コメント"
@@ -188,6 +188,7 @@
 <script>
 import { mapMutations, mapState } from "vuex";
 import VueMarkdown from "vue-markdown";
+import { mdiClose, mdiAccount, mdiAt, mdiCommentText } from "@mdi/js";
 
 export default {
     props: {
@@ -201,6 +202,10 @@ export default {
         VueMarkdown,
     },
     data: () => ({
+        mdiClose,
+        mdiAccount,
+        mdiAt,
+        mdiCommentText,
         newComment: {
             name: "",
             email: "",

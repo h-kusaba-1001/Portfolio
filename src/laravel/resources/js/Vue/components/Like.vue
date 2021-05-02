@@ -1,12 +1,12 @@
 <template>
     <v-btn icon @click="like()" v-if="isEnableLike !== false" class="">
-        <v-icon color="pink">mdi-heart-outline</v-icon>
+        <v-icon color="pink">{{ mdiHeartOutline }}</v-icon>
         {{ dLikeNum }}
     </v-btn>
     <v-tooltip bottom v-else>
         <template v-slot:activator="{ on, attrs }">
             <v-btn icon v-bind="attrs" v-on="on" class="mr-3">
-                <v-icon color="pink">mdi-heart</v-icon>
+                <v-icon color="pink">{{ mdiHeart }}</v-icon>
                 {{ dLikeNum }}
             </v-btn>
         </template>
@@ -16,12 +16,15 @@
 
 <script>
 import { mapMutations } from "vuex";
+import { mdiHeart, mdiHeartOutline } from "@mdi/js";
 
 export default {
     data() {
         return {
             dTodayLikeNumFromIp: 1,
             dLikeNum: 0,
+            mdiHeart,
+            mdiHeartOutline,
         };
     },
     props: {
