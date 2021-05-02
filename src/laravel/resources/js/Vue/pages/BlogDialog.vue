@@ -267,7 +267,7 @@ export default {
                     content: this.newComment.content,
                 };
                 await axios
-                    .post("/api/comment/", param)
+                    .post("/api/comment", param)
                     .then((response) => {
                         if (response.status === 200) {
                             // コメントを初期化
