@@ -10,7 +10,8 @@
         "production": "mix --production",
         "prettier": "prettier --write resources/js/**/*.{js,vue}",
         "lint": "eslint --ext .js,.vue resources",
-        "lint:fix": "eslint --fix --ext .js,.vue resources"
+        "lint:fix": "eslint --fix --ext .js,.vue resources",
+        "heroku-postbuild": "npm run production"
     },
     "devDependencies": {
         "eslint": "^7.24.0",
