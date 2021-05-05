@@ -27,14 +27,17 @@ mix.js("resources/js/app.js", "public/js")
     .vue()
     .sass("resources/sass/app.scss", "public/css")
     .vuetify("vuetify-loader")
-    .eslint({
-        fix: true,
-        extensions: ["js", "vue"],
-    })
-    .postCss("resources/css/app.css", "public/css");
+    .postCss("resources/css/app.css", "public/css")
+    .extract(["vue"]);
 
 if (mix.inProduction()) {
     mix.version();
+} else {
+    // 本番環境以外ではeslintで成形する
+    mix.eslint({
+        fix: true,
+        extensions: ["js", "vue"],
+    });
 }
 
 mix.disableNotifications();

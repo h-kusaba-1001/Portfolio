@@ -1,5 +1,7 @@
 /node_modules
 /public/js/app.js
+/public/js/manifest.js
+/public/js/vendor.js
 /public/js/pages/*
 /public/css/app.css
 /public/hot
