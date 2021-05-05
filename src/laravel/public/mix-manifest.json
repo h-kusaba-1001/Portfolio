@@ -7,9 +7,6 @@
     "/js/Home.js": "/js/Home.js",
     "/js/About.js": "/js/About.js",
     "/js/Blog.js": "/js/Blog.js",
-    "/js/BlogDetail.js": "/js/BlogDetail.js",
-    "/js/BlogDialog.js": "/js/BlogDialog.js",
-    "/js/Like.js": "/js/Like.js",
     "/css/app.css": "/css/app.css",
     "/js/vendor.js": "/js/vendor.js"
 }
