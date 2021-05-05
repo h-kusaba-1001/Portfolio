@@ -13,8 +13,9 @@ window.Vue = require("vue").default;
 import vuetify from "@/Vue/lib/vuetify";
 import router from "@/Vue/lib/router";
 import vuex from "@/Vue/lib/vuex";
+// 調整中
 // axiosをロードし、axios.で使用可
-import axios from "@/lib/axios";
+// const axios = () => import("@/lib/axios");
 
 /**
  * The following block of code may be used to automatically register your
