@@ -1,15 +1,15 @@
 {
     "/js/app.js": "/js/app.js",
     "/js/manifest.js": "/js/manifest.js",
+    "/js/Navigation.js": "/js/Navigation.js",
+    "/js/VueFooter.js": "/js/VueFooter.js",
+    "/js/InfoDialog.js": "/js/InfoDialog.js",
     "/js/Home.js": "/js/Home.js",
     "/js/About.js": "/js/About.js",
     "/js/Blog.js": "/js/Blog.js",
-    "/css/app.css": "/css/app.css",
-    "/js/vendor.js": "/js/vendor.js",
     "/js/BlogDetail.js": "/js/BlogDetail.js",
     "/js/BlogDialog.js": "/js/BlogDialog.js",
     "/js/Like.js": "/js/Like.js",
-    "/js/InfoDialog.js": "/js/InfoDialog.js",
-    "/js/Navigation.js": "/js/Navigation.js",
-    "/js/VueFooter.js": "/js/VueFooter.js"
+    "/css/app.css": "/css/app.css",
+    "/js/vendor.js": "/js/vendor.js"
 }
