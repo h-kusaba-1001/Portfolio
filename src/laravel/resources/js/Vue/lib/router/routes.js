@@ -1,6 +1,8 @@
-import Home from "@/Vue/Home.vue";
-import About from "@/Vue/pages/About.vue";
-import Blog from "@/Vue/pages/Blog.vue";
+const Home = () => import(/* webpackChunkName: "Home" */ "@/Vue/Home.vue");
+const About = () =>
+    import(/* webpackChunkName: "About" */ "@/Vue/pages/About.vue");
+const Blog = () =>
+    import(/* webpackChunkName: "Blog" */ "@/Vue/pages/Blog.vue");
 
 export default [
     {

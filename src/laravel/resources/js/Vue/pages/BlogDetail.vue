@@ -43,7 +43,8 @@
 <script>
 import { mapMutations } from "vuex";
 import { mdiChatProcessingOutline } from "@mdi/js";
-import Like from "@/Vue/components/Like.vue";
+const Like = () =>
+    import(/* webpackChunkName: "Like" */ "@/Vue/components/Like.vue");
 
 export default {
     props: {
