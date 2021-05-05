@@ -18,7 +18,7 @@ class ArticleForm extends Form
             ])
             ->add('content', 'textarea', [
                 'required' => true,
-                'rules' => ['required', 'max:1024'],
+                'rules' => ['required'],
             ])
             ->add('image', 'file', [
                 'rules' => ['nullable', 'image'],

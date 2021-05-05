@@ -6,10 +6,7 @@
         <!-- 会社に見つかると面倒なので、とりあえずnoindexを配置 -->
         <meta name="robots" content="noindex">
         <title>{{ config('app.name') }}</title>
-        <style>
-        </style>
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-        <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
     </head>
     <body>
@@ -31,6 +28,8 @@
                 <vue-footer></vue-footer>
             </v-app>
         </div>
+        <script src="{{ mix('js/manifest.js') }}"></script>
+        <script src="{{ mix('js/vendor.js') }}"></script>
         <script src="{{ mix('js/app.js') }}"></script>
     </body>
 </html>

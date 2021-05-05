@@ -1,7 +1,12 @@
 const mix = require("laravel-mix");
 
 require("vuetifyjs-mix-extension");
-require("laravel-mix-eslint");
+const CompressionPlugin = require("compression-webpack-plugin");
+
+if (!mix.inProduction()) {
+    require("laravel-mix-eslint");
+    require("laravel-mix-bundle-analyzer");
+}
 
 /*
  |--------------------------------------------------------------------------
@@ -27,14 +32,30 @@ mix.js("resources/js/app.js", "public/js")
     .vue()
     .sass("resources/sass/app.scss", "public/css")
     .vuetify("vuetify-loader")
-    .eslint({
-        fix: true,
-        extensions: ["js", "vue"],
-    })
-    .postCss("resources/css/app.css", "public/css");
+    .postCss("resources/css/app.css", "public/css")
+    .extract(["vue", "axios"])
+    .webpackConfig({
+        plugins: [
+            new CompressionPlugin({
+                filename: "[path]/[name].gz[query]",
+                algorithm: "gzip",
+                test: /\.js$|\.css$|\.html$|\.svg$/,
+                threshold: 10240,
+                minRatio: 0.8,
+            }),
+        ],
+    });
 
 if (mix.inProduction()) {
     mix.version();
+} else {
+    // 本番環境以外ではeslintで成形する
+    mix.eslint({
+        fix: true,
+        extensions: ["js", "vue"],
+    });
+    // 解析
+    mix.bundleAnalyzer();
 }
 
 mix.disableNotifications();

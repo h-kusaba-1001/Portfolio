@@ -13,8 +13,9 @@ window.Vue = require("vue").default;
 import vuetify from "@/Vue/lib/vuetify";
 import router from "@/Vue/lib/router";
 import vuex from "@/Vue/lib/vuex";
+// 調整中
 // axiosをロードし、axios.で使用可
-import axios from "@/lib/axios";
+// const axios = () => import("@/lib/axios");
 
 /**
  * The following block of code may be used to automatically register your
@@ -41,20 +42,25 @@ import axios from "@/lib/axios";
 import DateFilter from "./Vue/filters/Date";
 // filter
 Vue.filter("date", DateFilter);
-Vue.filter("truncate", function (value, limit) {
-    return value.substring(0, limit);
-});
-Vue.filter("tailing", function (value, tail) {
-    return value + tail;
-});
+
+// 使用していないfilter
+// Vue.filter("truncate", function (value, limit) {
+//     return value.substring(0, limit);
+// });
+// Vue.filter("tailing", function (value, tail) {
+//     return value + tail;
+// });
 
 // compornents
 // blade.php向けに、別途vuetifyのコンポーネントを読み込んでおく
 import { VApp, VProgressLinear, VMain, VContainer } from "vuetify/lib";
 
-import Navigation from "@/Vue/common/Navigation.vue";
-import VueFooter from "@/Vue/common/VueFooter.vue";
-import InfoDialog from "@/Vue/common/InfoDialog.vue";
+const Navigation = () =>
+    import(/* webpackChunkName: "Navigation" */ "@/Vue/common/Navigation.vue");
+const VueFooter = () =>
+    import(/* webpackChunkName: "VueFooter" */ "@/Vue/common/VueFooter.vue");
+const InfoDialog = () =>
+    import(/* webpackChunkName: "InfoDialog" */ "@/Vue/common/InfoDialog.vue");
 
 import { mapMutations, mapState } from "vuex";
 
