@@ -1,9 +1,6 @@
 {
     "/js/app.js": "/js/app.js",
     "/js/manifest.js": "/js/manifest.js",
-    "/js/Navigation.js": "/js/Navigation.js",
-    "/js/VueFooter.js": "/js/VueFooter.js",
-    "/js/InfoDialog.js": "/js/InfoDialog.js",
     "/js/Home.js": "/js/Home.js",
     "/js/About.js": "/js/About.js",
     "/js/Blog.js": "/js/Blog.js",

@@ -55,12 +55,9 @@ Vue.filter("date", DateFilter);
 // blade.php向けに、別途vuetifyのコンポーネントを読み込んでおく
 import { VApp, VProgressLinear, VMain, VContainer } from "vuetify/lib";
 
-const Navigation = () =>
-    import(/* webpackChunkName: "Navigation" */ "@/Vue/common/Navigation.vue");
-const VueFooter = () =>
-    import(/* webpackChunkName: "VueFooter" */ "@/Vue/common/VueFooter.vue");
-const InfoDialog = () =>
-    import(/* webpackChunkName: "InfoDialog" */ "@/Vue/common/InfoDialog.vue");
+import Navigation from "@/Vue/common/Navigation.vue";
+import VueFooter from "@/Vue/common/VueFooter.vue";
+import InfoDialog from "@/Vue/common/InfoDialog.vue";
 
 import { mapMutations, mapState } from "vuex";
 

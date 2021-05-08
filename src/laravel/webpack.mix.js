@@ -37,7 +37,7 @@ mix.js("resources/js/app.js", "public/js")
     .webpackConfig({
         plugins: [
             new CompressionPlugin({
-                filename: "[path]/[name].gz[query]",
+                filename: "[path]/[name][ext].gz[query]",
                 algorithm: "gzip",
                 test: /\.js$|\.css$|\.html$|\.svg$/,
                 threshold: 10240,
@@ -54,8 +54,7 @@ if (mix.inProduction()) {
         fix: true,
         extensions: ["js", "vue"],
     });
+    mix.disableNotifications();
     // 解析
     mix.bundleAnalyzer();
 }
-
-mix.disableNotifications();
