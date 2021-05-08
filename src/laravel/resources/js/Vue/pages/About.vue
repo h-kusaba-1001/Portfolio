@@ -73,7 +73,6 @@
                 おもな見どころ
             </v-card-title>
             <v-card-text class="text-body-1 text--primary">
-                ・SPA<br />
                 ・レスポンシブ対応 (スマホレイアウト対応)<br />
                 ・md形式のブログ<br />
                 ・画像のLazy Load<br />
@@ -81,6 +80,20 @@
                 ・IPアドレスでアクセスユーザを判別する、ログイン機能なしの1日1いいねの機能<br />
                 ・他のプロダクトへの再利用を前提とした、可読性・保守性を考慮したコーディング<br />
                 ・デザイン
+            </v-card-text>
+        </v-card>
+        <!-- 新しくチャレンジしたこと -->
+        <v-card elevation="2" outlined class="mt-3 text-left">
+            <v-card-title class="text-h5 font-weight-thin">
+                新しくチャレンジしたこと
+            </v-card-title>
+            <v-card-text class="text-body-1 text--primary">
+                ・SPA<br />
+                ・laravel-form-builder を使用したform定義・バリデーション
+                (管理画面)<br />
+                ・HerokuでのWEB系プロダクトのリリース<br />
+                ・アセットファイルのgzip圧縮化<br />
+                ・laravel-mix向けのeslint、php-cs-fixerのセッティング
             </v-card-text>
         </v-card>
     </div>
