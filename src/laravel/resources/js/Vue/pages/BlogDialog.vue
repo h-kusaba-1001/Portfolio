@@ -101,7 +101,7 @@
                     >
                         <v-container fluid py-0>
                             <v-layout wrap>
-                                <v-flex xs12 md6>
+                                <v-flex xs12 md12>
                                     <v-text-field
                                         filled
                                         :prepend-icon="mdiAccount"
@@ -112,7 +112,7 @@
                                         required
                                     ></v-text-field>
                                 </v-flex>
-                                <v-flex xs12 md6>
+                                <v-flex xs12 md12>
                                     <v-text-field
                                         filled
                                         :prepend-icon="mdiAt"
