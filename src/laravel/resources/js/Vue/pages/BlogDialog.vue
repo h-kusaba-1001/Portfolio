@@ -1,7 +1,7 @@
 <template lang="html">
     <v-layout>
         <v-dialog
-            fullscreen
+            :width="800"
             hide-overlay
             v-model="postDialog"
             transition="dialog-bottom-transition"
